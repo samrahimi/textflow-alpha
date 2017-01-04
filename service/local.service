@@ -1,0 +1,12 @@
+[Unit]
+Description=Forever Project API Service
+
+[Service]
+ExecStart=/home/sam/tijuana-sunrise/bin/www
+Restart=always
+User=root
+Environment=PATH=/home/sam/google-cloud-sdk/bin:/home/sam/bin:/home/sam/.local/bin:/home/sam/google-cloud-sdk/bin:/home/sam/bin:/home/sam/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin
+WorkingDirectory=/home/sam/tijuana-sunrise
+
+[Install]
+WantedBy=multi-user.target

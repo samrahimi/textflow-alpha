@@ -1,0 +1,12 @@
+[Unit]
+Description=Forever Project API Service
+
+[Service]
+ExecStart=/home/sam/tijuana-sunrise/bin/www
+Restart=always
+User=node_service
+Environment=PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games
+WorkingDirectory=/home/sam/tijuana-sunrise
+
+[Install]
+WantedBy=multi-user.target
