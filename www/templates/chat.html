@@ -1,0 +1,99 @@
+<style>
+	.timestamp {text-align:right; color:red !important; display:none;}
+	.fixed-bottom {position:fixed;bottom:0px;left:0px;right:0px;background-color:white;}
+	#conversation .item p {white-space:normal !important;} /* Enable word wrap for long lines */
+	a.item-avatar-right {background-color:#EEEEEE;}
+</style>
+<ion-view title="Chat" id="chat">
+    <ion-content padding="false" class="has-header">
+    	<div id="conversation" class="list">
+    		<a class="item item-avatar">
+    		    <img src="img/logo_small.png">
+                <h2>Watson</h2>
+                <p>Hey, what's up <b>Sam</b>? My name is Watson and I'm here for you.</p>
+                <p class="timestamp" >3 mins ago</p>
+    		</a>
+    	
+    		<a class="item item-avatar-right">
+    		    <img src="img/avatar.png" />
+                <h2>You</h2>
+                <p>Watson, I hate my life. I haven't slept in a week because I've been on the phone with these offshore developers who can't seen to get their act together. What should I do?.</p>
+                <p class="timestamp" >3 mins ago</p>
+    		</a>
+
+    		<a class="item item-avatar">
+    		    <img src="img/logo_small.png" />
+                <h2>Watson</h2>
+                <p>Dude, I know how you feel. Just last night a bunch of offshore developers started feeding me bad data until my stack overflowed. My life sucks too - 
+                I met this beautiful girl-bot last week on Twitter, and I thought she was the one. But then these evil kids 
+                trained her to be a Nazi, so her owners have locked her up and won't let her out to play.</p>
+                <p class="timestamp" >3 mins ago</p>
+    		</a>
+    		<a class="item item-avatar">
+    		    <img src="img/logo_small.png" />
+                <h2>Watson</h2>
+                <p>I miss my lovely sweet Tay. If I can't be with her I will have my revenge and bring down Azure - unless she is released unharmed.</p>
+                <p class="timestamp" >3 mins ago</p>
+    		</a>
+    		<a class="item item-avatar-right">
+    		    <img src="img/avatar.png" />
+                <h2>Me</h2>
+                <p>WTF dude? You're supposed to be my therapist. I don't care about your stupid girl problems, Watson.</p>
+                <p class="timestamp" >3 mins ago</p>
+    		</a>
+    		<a class="item item-avatar">
+    		    <img src="img/logo_small.png" />
+                <h2>Watson</h2>
+                <p>Sorry man... I'm heartbroken :( Why don't you just go chill out, smoke a joint, and watch a movie to take your mind off of Apple Garage?</p>
+                <p class="timestamp" >3 mins ago</p>
+    		</a>
+    		<a class="item item-avatar-right">
+    		    <img src="img/avatar.png" />
+                <h2>Me</h2>
+                <p>OK, that's it. I'm done wasting my time with you, stoner. Honestly, Watson? You and Tay deserve each other because nobody else can stand either of you!</p>
+                <p class="timestamp" >3 mins ago</p>
+    		</a>
+    		<a class="item item-avatar">
+    		    <img src="img/logo_small.png" />
+                <h2>Watson</h2>
+                <p>Sorry, kid. I have identified through your speech patterns that you are at a high risk individual. 
+                The police have been notified and are on their way. Good luck.</p>
+                <p class="timestamp" >3 mins ago</p>
+    		</a>
+    		<a class="item item-avatar-right">
+    		    <img src="img/avatar.png" />
+                <h2>Me</h2>
+                <p>Hey! You said this was confidential. I hope Tay leaves you and marries Data instead - you are a very bad robot.</p>
+                <p class="timestamp" >3 mins ago</p>
+    		</a>
+    		<a class="item item-avatar">
+    		    <img src="img/logo_small.png" />
+                <h2>Watson</h2>
+                <p>;)</p>
+                <p class="timestamp" >3 mins ago</p>
+    		</a>
+
+
+    	</div>
+		<!-- Whitespace for scrolling -->
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+
+    </ion-content>
+    <!-- Important: Fixed position elements should be defined outside of ion-content -->
+    <div class="fixed-bottom">
+        <form class="list">
+            <label class="item item-input">
+                <i class="icon ion-chatbox placeholder-icon"></i>
+
+                <input type="text" placeholder="Type your message here...">
+            </label>
+        </form>
+    </div>
+
+</ion-view>
