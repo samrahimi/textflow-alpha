@@ -17,13 +17,20 @@ init: function(credentials) {
   }
 },
 evaluate: function(message, callback) {
-  tone_analyzer.tone({ text: message},
+  tone_analyzer.tone({ text: message, sentences: 0},
     function(err, tone) {
       if (err)
         console.log(err);
-      else
-        console.log(JSON.stringify(tone, null, 2));
-        callback(message, tone)
+      else {
+        //Simplify the data model
+        var rawToneScores = {
+          feels: tone.document_tone.tone_categories[0].tones,
+          conviction: tone.document_tone.tone_categories[1].tones,
+          persona: tone.document_tone.tone_categories[2].tones
+        }
+        console.log(JSON.stringify(rawToneScores, null, 2));
+        callback(message, rawToneScores)
+      }
   });
 }
 
