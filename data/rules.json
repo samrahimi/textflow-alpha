@@ -1,18 +1,18 @@
 {
-    "social_media.general" : [
+    "dating.self" : [
         {
             "rule_id": "joy_is_joyful",
             "type": "positive",
-            "test": "(SCOREOBJ.feels.joy - SCOREOBJ.feels.sad > 0.5)",
+            "test": "(RAWSCORE.feels.joy - RAWSCORE.feels.sad > 0.5)",
             "summary": "Joy is Joyful",
-            "details": "Your audience is likely to perceive this message as being happy and positive. A positive tone is associated with increased Likes and Shares on social media."
+            "details": "The recipient is likely to perceive this message as being happy and positive. Great job :)"
         },
         {
             "rule_id": "contempt",
             "type": "negative",
-            "test": "(SCOREOBJ.feels.anger > 0.5 && SCOREOBJ.feels.disgust > 0.25)",
+            "test": "(RAWSCORE.feels.anger > 0.5 && RAWSCORE.feels.disgust > 0.25)",
             "summary": "Check Your Attitude!",
-            "details": "WARNING. High levels of anger and disgust have been detected in your message. This will be interpreted as contempt for the object of your frustration. You may get better results with a more diplomatic tone." 
+            "details": "Your message contains high levels of anger and disgust. This is likely to be perceived as contempt if directed towards the recipient, or extreme negativity if you are complaining about someone or something else. Suggested revisions: tone it down, laugh it off, see the bright side" 
         }
     ]
 }
