@@ -7,12 +7,13 @@
 var app = require('../app');
 var debug = require('debug')('tijuana-sunrise:server');
 var http = require('http');
+var config = require('../lib/config.js')
 
 /**
  * Get port from config and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || '3000');
+var port = normalizePort(config.port || '3000');
 app.set('port', port);
 
 /**

@@ -1,18 +1,57 @@
 {
-    "dating.self" : [
+    "dating.self" :{ 
+        "weights" : {
+            "anger": -0.3,
+            "disgust": -0.2,
+            "fear": -0.2,
+            "sadness": -0.15,
+            "tentative": -0.15,
+            "confident": 0.15,
+            "joy":0.25,
+            "openness": 0.2,
+            "agreeableness": 0.25, 
+            "extraversion": 0.05, 
+            "emotional_range": 0.1,
+            "analytical": 0,
+            "conscientiousness": 0
+
+        },
+        "advice": [
+            {
+                "test": "(aggregate_score > 0 && aggregate_score < 25)",
+                "summary": "Negative",
+                "details": "WRONG WAY. Your communication is likely to be seen as containing high degrees of negativity and/or anger. This can be perceived as disrespectful or hurtful, even if that is not your intent. Take a deep breath and try again - whatever you are trying to express can be express in a more balanced way!"
+            },
+            {
+                "test": "(aggregate_score >= 25 && aggregate_score < 50)",
+                "summary": "Mixed",
+                "details": "This message is emotionally mixed in character. While there are positive elements, the overall tone will be perceived as neutral or slightly negative. Recommendation: consider rephrasing any negative sentiments in a more neutral and analytical fashion, and focus on the positives!"
+            },
+            {
+                "test": "(aggregate_score >=50 && aggregate_score < 75)",
+                "summary": "Positive",
+                "details": "This message has a positive overall tone and will likely be perceived as such. If there are no warnings, you can send this message with confidence."
+            },
+            {
+                "test": "(aggregate_score >= 75)",
+                "summary": "Glowing",
+                "details": "Congratulations! Your message exudes happiness and positivity. While not always appropriate in business, this is exactly how you want your romantic partners to perceive you. Hit that send button and work your magic ;)"
+            }
+        ],
+        "alerts": [
         {
             "rule_id": "joy_is_joyful",
             "type": "positive",
-            "test": "(RAWSCORE.feels.joy - RAWSCORE.feels.sad > 0.5)",
+            "test": "(raw_scores.joy.score > 0.5)",
             "summary": "Joy is Joyful",
             "details": "The recipient is likely to perceive this message as being happy and positive. Great job :)"
         },
         {
             "rule_id": "contempt",
             "type": "negative",
-            "test": "(RAWSCORE.feels.anger > 0.5 && RAWSCORE.feels.disgust > 0.25)",
+            "test": "(raw_scores.anger.score > 0.5 && raw_score.disgust.score > 0.25)",
             "summary": "Check Your Attitude!",
             "details": "Your message contains high levels of anger and disgust. This is likely to be perceived as contempt if directed towards the recipient, or extreme negativity if you are complaining about someone or something else. Suggested revisions: tone it down, laugh it off, see the bright side" 
-        }
-    ]
+        }]
+    }
 }

@@ -13,7 +13,7 @@ var jung = require('../lib/jung')
  * context: {
  *  user_id: unique user identifier in the scope of the client app (could be IMEI, facebook id, or whatever)
  *  client_id: id of the calling application
- *  rulesets: [array of rulesets to apply ]
+ *  ruleset_id: id of the ruleset 
  * }
  * 
  * Output:

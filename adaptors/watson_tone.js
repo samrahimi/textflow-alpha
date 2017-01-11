@@ -22,11 +22,21 @@ evaluate: function(message, callback) {
       if (err)
         console.log(err);
       else {
-        //Simplify the data model
-        var rawToneScores = {
-          feels: tone.document_tone.tone_categories[0].tones,
-          conviction: tone.document_tone.tone_categories[1].tones,
-          persona: tone.document_tone.tone_categories[2].tones
+        //console.log(JSON.stringify(tone, null, 2));
+
+        //Fix the most dreadful example of JSON object composition, as sold 
+        //to us from Big Blue. I should charge them for wasting my time LOL. 
+        var rawToneScores = {}
+        for (var c in tone.document_tone.tone_categories) {
+          var categoryName = tone.document_tone.tone_categories[c].category_name
+          for (var t in tone.document_tone.tone_categories[c].tones) {
+            var el = tone.document_tone.tone_categories[c].tones[t]
+            rawToneScores[el.tone_id.replace('_big5','')] = {
+              score: el.score,
+              friendly_name: el.tone_name.replace('_big5', ''),
+              category: categoryName,
+            }
+          }
         }
         console.log(JSON.stringify(rawToneScores, null, 2));
         callback(message, rawToneScores)
