@@ -1,34 +1,27 @@
 <style>
 	.header {color:#000000;font-weight:300;text-align:center;}
 	#cta {position:fixed;bottom:-20px;left:10px;right:10px;}
+    textarea {height:250px !important}
 </style>
-<ion-view view-title="#here4U">
+<ion-view view-title="TextLab">
     <ion-content padding="true" scroll="false" has-header>
-        <div style="text-align:center;">
-        	<!--
-            <img src="img/banner-home.png" width="100%" height="auto">
-             -->
-             <br /><br />
-             			 
-             <br /><br />
-             <img src="img/logo_small.png" />
-
-            <h2 class="header-centered">Need To Talk?</h2>
-            
-            <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                irure dolor in."</p>
-                
-            <br /><br />
-        </div>
-        <div class="list card" id="cta">
-            <div class="item item-body" style="background-color:#DDDDDD;">
-                <form class="list">
-                    <label class="item item-input">
-                        <input type="text" placeholder="What should I call you?">
+                <form>
+                    <label class="item item-input item-select">
+                            <div class="input-label">
+                            Message Context
+                            </div>
+                            <select name="ruleset" id="ruleset">
+                                <option selected value="social.general">General / Social</option>
+                                <option value="dating.self">Dating - From You</option>
+                                <option value="dating.other">Dating - From Them</option>
+                                <option value="business.general">Business</option>
+                            </select>
                     </label>
-                    <a href="#/app/chat" id="btn-start-chat" class="button button-positive  button-block">Start Chatting</a>
+                    <label class="item item-input">
+                        <textarea id="message" placeholder="Type or paste the communication to be analyzed. You can specify the context using the selector above - by default, the context is assumed to be general social communications (such as messages between friends, or social media posts"></textarea>
+                    </label>
+                    <a href="#/app/chat" id="btn-start-chat" class="button button-positive  button-block">Analyze</a>
                 </form>
-            </div>
-        </div>
+
     </ion-content>
 </ion-view>
