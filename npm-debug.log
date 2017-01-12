@@ -24,7 +24,7 @@
 14 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:226:5)
 15 verbose pkgid tijuana-sunrise@0.0.1
 16 verbose cwd /home/sam/tijuana-sunrise
-17 error Linux 4.4.0-57-generic
+17 error Linux 4.4.0-59-generic
 18 error argv "/usr/bin/nodejs" "/usr/bin/npm" "start"
 19 error node v7.4.0
 20 error npm  v4.0.5

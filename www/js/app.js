@@ -36,11 +36,12 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       url: '/home',
       views: {
         'menuContent': {
-          templateUrl: 'templates/home.html'
-                  }
+              templateUrl: 'templates/home.html',
+              controller: 'HomeCtrl'
+          }
       }
     })
-
+   /*
   .state('app.chat', {
     url: '/chat',
     views: {
@@ -48,7 +49,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
         templateUrl: 'templates/chat.html'
       }
     }
-  });
+  }); */
 
 
   // if none of the above states are matched, use this as the fallback
