@@ -5,22 +5,20 @@
 </style>
 <ion-view id="home" view-title="TextLab"> 
     <ion-content padding="true" scroll="false" has-header>
-                <form>
-                    <label class="item item-input item-select">
-                            <div class="input-label">
+                <div class="list">
+                    <div class="item item-input item-select">
                             Message Context
-                            </div>
-                            <select ng-model="Ruleset" name="ruleset" id="ruleset">
+                            <select name="ruleset" id="ruleset">
                                 <option selected value="social.general">General / Social</option>
                                 <option value="dating.self">Dating - From You</option>
                                 <option value="dating.other">Dating - From Them</option>
                                 <option value="business.general">Business</option>
                             </select>
-                    </label>
+                    </div>
                     <label class="item item-input">
                         <textarea ng-model="Message" id="message" placeholder="Type or paste the communication to be analyzed. You can specify the context using the selector above - by default, the context is assumed to be general social communications (such as messages between friends, or social media posts"></textarea>
                     </label>
                     <a ng-click="evaluate()" id="btn-start-chat" class="button button-positive  button-block">Analyze</a>
-                </form>
+                </div>
     </ion-content>
 </ion-view>
