@@ -23,7 +23,8 @@ router.post('/', function(req, res, next) {
   var message = req.body.message
   var context = req.body.context
 
-  console.log("Received: "+message)
+  console.log("Message: "+message)
+  console.log("Context: " +context)
   /* Initialize the AI engine with credentials */ 
   engine.init(config.credentials[config.adaptors.engine])
   /* Request text analysis from AI engine (offsite) */

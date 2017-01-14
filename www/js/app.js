@@ -25,19 +25,19 @@ angular.module('starter', ['ionic', 'starter.controllers'])
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
 
-   .state('app', {
+  .state('app', {
     url: '/app',
     abstract: true,
     templateUrl: 'templates/menu.html',
     controller: 'AppCtrl'
   })
   
-   .state('app.home', {
-      url: '/home',
+   .state('app.lab', {
+      url: '/lab',
       views: {
         'menuContent': {
-              templateUrl: 'templates/home.html',
-              controller: 'HomeCtrl'
+              templateUrl: 'templates/lab.html',
+              controller: 'LabCtrl'
           }
       }
     })
@@ -53,5 +53,5 @@ angular.module('starter', ['ionic', 'starter.controllers'])
 
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/home');
+  $urlRouterProvider.otherwise('/app/lab');
 });

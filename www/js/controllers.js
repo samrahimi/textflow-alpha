@@ -40,10 +40,37 @@ angular.module('starter.controllers', [])
     }, 1000);
   };
 })
-.controller('HomeCtrl', function($scope) {
+.controller('LabCtrl', function($scope, $ionicLoading, $http) {
   $scope.Message = "";
   $scope.Ruleset="";
+  $scope.PlaceHolderCSS = "";
+  $scope.showLoader = function() {$ionicLoading.show()}
+  $scope.hideLoader = function() {$ionicLoading.hide()}
   $scope.evaluate=function() {
-    alert(this.Message)
+    $ionicLoading.show()
+    $http.post('/messages', 
+      {
+          message:this.Message,
+          context:'dating.self'
+      }).then(function successCallback(response) {
+          $ionicLoading.hide()
+          $scope.PlaceHolderCSS = "display:none" //hacky hacky hacky
+          $scope.Summary = response.data.advice.title
+          $scope.Advice = response.data.advice.advice
+          $scope.NormalizedScore = parseInt(response.data.aggregate_score)
+          var opts = {
+            percent: $scope.NormalizedScore, 
+            size: 150, 
+            lineWidth:15, 
+            rotate: 20,
+            lineColor: response.data.advice.suggested_color
+          }
+          var graph = new CircleGraph(opts, document.getElementById('graph'))
+          graph.render() //Woohoo. Componentized a spaghetti script found on PasteBin.
+      }, function errorCallback(response) {
+          $ionicLoading.hide()
+          console.log("Error posting to /messages")
+      });
+
   }
 })

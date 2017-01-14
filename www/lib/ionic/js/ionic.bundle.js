@@ -3116,9 +3116,9 @@ function tapHandleFocus(ele) {
 
   if (ele.tagName == 'SELECT') {
     // trick to force Android options to show up
-    triggerMouseEvent('mousedown', ele, 0, 0);
+    //triggerMouseEvent('mousedown', ele, 0, 0);
     ele.focus && ele.focus();
-    triggerFocusIn = true;
+    triggerFocusIn =  true;
 
   } else if (tapActiveElement() === ele) {
     // already is the active element and has focus

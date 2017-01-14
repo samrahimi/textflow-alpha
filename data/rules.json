@@ -4,13 +4,13 @@
             "anger": -0.3,
             "disgust": -0.2,
             "fear": -0.2,
-            "sadness": -0.15,
-            "tentative": -0.15,
-            "confident": 0.15,
-            "joy":0.25,
+            "sadness": -0.2,
+            "tentative": -0.1,
+            "confident": 0.1,
+            "joy":0.3,
             "openness": 0.2,
-            "agreeableness": 0.25, 
-            "extraversion": 0.05, 
+            "agreeableness": 0.2, 
+            "extraversion": 0.1, 
             "emotional_range": 0.1,
             "analytical": 0,
             "conscientiousness": 0
@@ -18,24 +18,47 @@
         },
         "advice": [
             {
-                "test": "(aggregate_score > 0 && aggregate_score < 25)",
+                "id": "generally_shitty",
+                "test": "(aggregate_score > 0 && aggregate_score < 40 && raw_scores.emotional_range.score < 0.5)",
                 "summary": "Negative",
-                "details": "WRONG WAY. Your communication is likely to be seen as containing high degrees of negativity and/or anger. This can be perceived as disrespectful or hurtful, even if that is not your intent. Take a deep breath and try again - whatever you are trying to express can be express in a more balanced way!"
+                "details": "<bad>Sending Not Advised:</bad> Message will be perceived as containing high levels of negative emotions.</b>",
+                "graph_color": "#FF0000"
             },
             {
-                "test": "(aggregate_score >= 25 && aggregate_score < 50)",
-                "summary": "Mixed",
-                "details": "This message is emotionally mixed in character. While there are positive elements, the overall tone will be perceived as neutral or slightly negative. Recommendation: consider rephrasing any negative sentiments in a more neutral and analytical fashion, and focus on the positives!"
+                "id": "borderline",
+                "test": "(aggregate_score > 0 && aggregate_score < 40 && raw_scores.emotional_range.score >= 0.5)",
+                "summary": "Unstable",
+                "details": "<bad>Sending Not Advised:</bad> The combination of negativity and emotional range in this message is associated with emotional instability.",
+                "graph_color": "#FF0000"
+
             },
             {
-                "test": "(aggregate_score >=50 && aggregate_score < 75)",
+                "id": "low_range_mixed",
+                "test": "(aggregate_score >= 40 && aggregate_score < 60 && raw_scores.emotional_range.score < 0.5)",
+                "summary": "Neutral",
+                "details": "Content is emotionally neutral in tone with no obvious red flags. Often this is the case with shorter messages.",
+                "graph_color": "#FFFF00"
+
+            },
+            {
+                "id": "high_range_mixed",
+                "test": "(aggregate_score >= 40 && aggregate_score < 60 && raw_scores.emotional_range.score > 0.5)",
+                "summary": "Balanced",
+                "details": "Emotionally expressive, yet balanced and realistic.",
+                "graph_color": "#0000FF"
+            },
+            {
+                "id": "regular_positive",
+                "test": "(aggregate_score >=60 && aggregate_score < 80)",
                 "summary": "Positive",
-                "details": "This message has a positive overall tone and will likely be perceived as such. If there are no warnings, you can send this message with confidence."
+                "details": "This message has a positive overall tone and will likely be perceived as such. If there are no warnings, you can send this message with confidence.",
+                "graph_color": "#00FF00"
             },
             {
-                "test": "(aggregate_score >= 75)",
+                "test": "(aggregate_score >= 80)",
                 "summary": "Glowing",
-                "details": "Congratulations! Your message exudes happiness and positivity. While not always appropriate in business, this is exactly how you want your romantic partners to perceive you. Hit that send button and work your magic ;)"
+                "details": "Your message glows with positive emotions. Please note: recipient may wonder if you are in love with them.",
+                "graph_color":"#00FF00"
             }
         ],
         "alerts": [

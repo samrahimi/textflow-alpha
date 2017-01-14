@@ -1,0 +1,37 @@
+<style>
+    /*
+	.header {color:#000000;font-weight:300;text-align:center;}
+	*/
+
+
+</style>
+<ion-view id="lab" view-title="TextLab"> 
+    <ion-content padding="true" scroll="false" has-header>
+                <div class="list">
+                    <div class="item">
+                            Message Context: 
+                            <a class="calm" onclick="alert('hello');" id="btn-choose-content">
+                                General / Social
+                            </a>
+                    </div>
+                    <div class="item item-input">
+                        <textarea ng-model="Message" id="message" placeholder="Type or paste the communication to be analyzed. Specify the context for additional insights"></textarea>
+                    </div>
+                    <a ng-click="evaluate()" id="btn-analyze-text" class="button button-positive  button-block">Analyze</a>
+                </div>
+                <div id="results" style="margin-bottom:10px;overflow:auto">
+                    <h3 style="{{PlaceHolderCSS}}" class="results-placeholder">
+                        Tap "Analyze" above to calculate your E-Score.
+                    </h3>
+                    <!-- This is thedisplay circle graph. See js/circle-graph.js -->
+                    <div class="chart" id="graph"></div>
+                    <!-- These display the overall results in words -->
+                    <h3 id="summary" class="results-text">{{Summary}}</h3>
+                    
+                    <!-- This needs to go in the details view - not enough room
+                    <p id="advice" class="results-text">{{Advice}}</p>
+                    -->
+                    
+                </div>
+    </ion-content>
+</ion-view>
