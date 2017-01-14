@@ -19,13 +19,14 @@
         margin-right:auto;
         width:150px; height:150px;
     }
-    canvas {
+    div.chart canvas {
         display: block;
         position:absolute;
         top:0;
         left:0;
     }
-    span {
+
+    div.chart span {
         color:#555;
         display:block;
         line-height:150px;
