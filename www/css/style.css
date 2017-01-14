@@ -1,6 +1,6 @@
 /* Empty. Add your own CSS if you like */
     #cta {position:fixed;bottom:-20px;left:10px;right:10px;}
-    textarea {height:200px !important}
+    textarea {height:150px !important}
     .results-placeholder {
         color:#cccccc !important;
         text-align: center !important;
@@ -35,5 +35,4 @@
         font-family:sans-serif;
         font-size:40px;
         font-weight:100;
-        margin-left:5px;
     }
