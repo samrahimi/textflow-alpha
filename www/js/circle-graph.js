@@ -32,16 +32,7 @@ class CircleGraph {
         var options = this.options
         var canvas = document.createElement('canvas');
         var span = document.createElement('span');
-        span.textContent = options.percent + '%';
-            
-        if (typeof(G_vmlCanvasManager) !== 'undefined') {
-            G_vmlCanvasManager.initElement(canvas);
-        }
-        if (typeof(G_vmlCanvasManager) !== 'undefined') {
-            G_vmlCanvasManager.initElement(canvas);
-        }
-
-        this.ctx = canvas.getContext('2d');
+        span.textContent = options.percent;
 
         this.ctx = canvas.getContext('2d');
         canvas.width = canvas.height = options.size;

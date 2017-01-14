@@ -2,9 +2,9 @@
     "dating.self" :{ 
         "weights" : {
             "anger": -0.3,
-            "disgust": -0.2,
+            "disgust": -0.1,
             "fear": -0.2,
-            "sadness": -0.2,
+            "sadness": -0.3,
             "tentative": -0.1,
             "confident": 0.1,
             "joy":0.3,
