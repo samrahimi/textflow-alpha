@@ -1,0 +1,87 @@
+{
+        "dating.self" :
+        { 
+            "status": "online",
+            "title":"Dating | Your Messages",
+            "description": "Alternative algorithm for assessing messages sent by you in a dating context. Considered unreliable, use for testing purposes only.",
+            "weights" : {
+                "anger": -0.3,
+                "disgust": -0.1,
+                "fear": -0.2,
+                "sadness": -0.3,
+                "tentative": -0.1,
+                "confident": 0.1,
+                "joy":0.5,
+                "openness": 0.2,
+                "agreeableness": 0.1, 
+                "extraversion": 0.1, 
+                "emotional_range": 0,
+                "analytical": 0,
+                "conscientiousness": 0
+
+            },
+            "negatives": [
+                "anger", "disgust", "fear", "sadness"
+            ],
+            "advice": [
+                {
+                    "id": "generally_shitty",
+                    "test": "(aggregate_score > 0 && aggregate_score < 40 && raw_scores.emotional_range.score < 0.5)",
+                    "summary": "Negative",
+                    "details": "<bad>Sending Not Advised:</bad> Message will be perceived as containing high levels of negative emotions.</b>",
+                    "graph_color": "#FF0000"
+                },
+                {
+                    "id": "borderline",
+                    "test": "(aggregate_score > 0 && aggregate_score < 40 && raw_scores.emotional_range.score >= 0.5)",
+                    "summary": "Unstable",
+                    "details": "<bad>Sending Not Advised:</bad> The combination of negativity and emotional range in this message is associated with emotional instability.",
+                    "graph_color": "#FF0000"
+
+                },
+                {
+                    "id": "low_range_mixed",
+                    "test": "(aggregate_score >= 40 && aggregate_score < 60 && raw_scores.emotional_range.score < 0.5)",
+                    "summary": "Neutral",
+                    "details": "Content is emotionally neutral in tone with no obvious red flags. Often this is the case with shorter messages.",
+                    "graph_color": "#FFFF00"
+
+                },
+                {
+                    "id": "high_range_mixed",
+                    "test": "(aggregate_score >= 40 && aggregate_score < 60 && raw_scores.emotional_range.score > 0.5)",
+                    "summary": "Balanced",
+                    "details": "Emotionally expressive, yet balanced and realistic.",
+                    "graph_color": "#0000FF"
+                },
+                {
+                    "id": "regular_positive",
+                    "test": "(aggregate_score >=60 && aggregate_score < 80)",
+                    "summary": "Positive",
+                    "details": "This message has a positive overall tone and will likely be perceived as such. If there are no warnings, you can send this message with confidence.",
+                    "graph_color": "#00FF00"
+                },
+                {
+                    "test": "(aggregate_score >= 80)",
+                    "summary": "Glowing",
+                    "details": "Your message glows with positive emotions. Please note: recipient may wonder if you are in love with them.",
+                    "graph_color":"#00FF00"
+                }
+            ],
+            "alerts": [
+            {
+                "rule_id": "joy_is_joyful",
+                "type": "positive",
+                "test": "(raw_scores.joy.score > 0.5)",
+                "summary": "Joy is Joyful",
+                "details": "The recipient is likely to perceive this message as being happy and positive. Great job :)"
+            },
+            {
+                "rule_id": "contempt",
+                "type": "negative",
+                "test": "(raw_scores.anger.score > 0.5 && raw_score.disgust.score > 0.25)",
+                "summary": "Check Your Attitude!",
+                "details": "Your message contains high levels of anger and disgust. This is likely to be perceived as contempt if directed towards the recipient, or extreme negativity if you are complaining about someone or something else. Suggested revisions: tone it down, laugh it off, see the bright side" 
+            }]
+        }
+}

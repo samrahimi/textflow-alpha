@@ -51,7 +51,10 @@ angular.module('starter.controllers', [])
     $http.post('/messages', 
       {
           message:this.Message,
-          context:'dating.self'
+          context: {
+            ruleset_id: 'dating.self',
+            algorithm: 'jung'
+          }
       }).then(function successCallback(response) {
           $ionicLoading.hide()
           $scope.PlaceHolderCSS = "display:none" //hacky hacky hacky
