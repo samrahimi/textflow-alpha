@@ -52,7 +52,7 @@ angular.module('starter.controllers', [])
       {
           message:this.Message,
           context: {
-            ruleset_id: 'dating.self',
+            ruleset_id: 'business.general',
             algorithm: 'jung'
           }
       }).then(function successCallback(response) {
