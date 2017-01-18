@@ -1,7 +1,12 @@
 angular.module('starter.controllers', [])
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
-
+  
+  //The current context, sent to the server with each message
+  $JS_GLOBALS.current_context = {
+        id:'dating.self',
+        title: 'Social / Dating'
+        }
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
   // To listen for when this page is active (for example, to refresh data),
@@ -9,55 +14,35 @@ angular.module('starter.controllers', [])
   //$scope.$on('$ionicView.enter', function(e) {
   //});
 
-  // Create the login modal that we will use later
-  $ionicModal.fromTemplateUrl('templates/context-picker.html', {
-    scope: $scope
-  }).then(function(modal) {
-    $scope.modal = modal;
-  });
-
-  // Triggered in the login modal to close it
-  $scope.closeSettings = function() {
-    $scope.modal.hide();
-  };
-
-  // Open the login modal
-  $scope.openSettings = function() {
-    $scope.modal.show();
-  };
-
-  // Perform the login action when the user submits the login form
-  $scope.doLogin = function() {
-    console.log('Doing login', $scope.loginData);
-
-    // Simulate a login delay. Remove this and replace with your login
-    // code if using a login system
-    $timeout(function() {
-      $scope.closeLogin();
-    }, 1000);
-  };
 })
 .controller('SettingsCtrl', function($scope){
     $scope.data= {
-      context_name:'Dating &amp; Relationships'
+      context_id: $JS_GLOBALS.current_context.id
     }
 
     //TODO: Get thee to a database! And same with the rules.json
     $scope.contexts = [
         {
         id:'dating.self',
-        title: 'Dating &amp; Relationships'
+        title: 'Dating / Relationships'
         },
         {
           id:'business.general',
           title: 'Business Communications'
         }    
       ]
+
+    $scope.onChange = function(item) {
+      $JS_GLOBALS.current_context = item
+      console.log("New Context")
+      console.log(JSON.stringify($JS_GLOBALS.current_context, null, 2))
+    }
 })
 .controller('LabCtrl', function($scope, $ionicLoading, $http) {
   $scope.Message = "";
   $scope.Ruleset="";
   $scope.PlaceHolderCSS = "";
+  $scope.current_context = $JS_GLOBALS.current_context;
   $scope.showLoader = function() {$ionicLoading.show()}
   $scope.hideLoader = function() {$ionicLoading.hide()}
   $scope.evaluate=function() {
@@ -66,7 +51,7 @@ angular.module('starter.controllers', [])
       {
           message:this.Message,
           context: {
-            ruleset_id: 'business.general',
+            ruleset_id: $JS_GLOBALS.current_context.id,
             algorithm: 'jung'
           }
       }).then(function successCallback(response) {
