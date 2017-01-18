@@ -1,0 +1,17 @@
+<ion-view id="settings" view-title="TextLab"> 
+    <ion-content padding="true" scroll="true" has-header>
+      <ion-content>
+
+
+       <div class="list">
+        <div class="item item-divider"> 
+                 Conversational Context
+        </div>
+        <ion-radio ng-repeat="context in contexts"
+                   ng-value="context.id"
+                   ng-model="data.context_name"
+                   name="context-picker">
+          {{ context.title }}
+        </ion-radio>
+  </ion-content>
+</ion-view>                   

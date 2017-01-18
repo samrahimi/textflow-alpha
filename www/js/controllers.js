@@ -9,23 +9,20 @@ angular.module('starter.controllers', [])
   //$scope.$on('$ionicView.enter', function(e) {
   //});
 
-  // Form data for the login modal
-  $scope.loginData = {};
-
   // Create the login modal that we will use later
-  $ionicModal.fromTemplateUrl('templates/login.html', {
+  $ionicModal.fromTemplateUrl('templates/context-picker.html', {
     scope: $scope
   }).then(function(modal) {
     $scope.modal = modal;
   });
 
   // Triggered in the login modal to close it
-  $scope.closeLogin = function() {
+  $scope.closeSettings = function() {
     $scope.modal.hide();
   };
 
   // Open the login modal
-  $scope.login = function() {
+  $scope.openSettings = function() {
     $scope.modal.show();
   };
 
@@ -39,6 +36,23 @@ angular.module('starter.controllers', [])
       $scope.closeLogin();
     }, 1000);
   };
+})
+.controller('SettingsCtrl', function($scope){
+    $scope.data= {
+      context_name:'Dating &amp; Relationships'
+    }
+
+    //TODO: Get thee to a database! And same with the rules.json
+    $scope.contexts = [
+        {
+        id:'dating.self',
+        title: 'Dating &amp; Relationships'
+        },
+        {
+          id:'business.general',
+          title: 'Business Communications'
+        }    
+      ]
 })
 .controller('LabCtrl', function($scope, $ionicLoading, $http) {
   $scope.Message = "";
