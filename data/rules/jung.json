@@ -14,7 +14,7 @@
                 "id":"mean",
                 "type":"warning",
                 "pattern": "(raw_scores.anger.score >= 0.5 && raw_scores.disgust >= 0.25)",
-                "advice": "Moderate to high levels of anger and disgust detected. This may be perceived as indicating contempt for your partner and is considered by couples therapists to be a relationship killer. Strongly consider revising."
+                "advice": "Anger & disgust together are a dangerous combo. May be felt as contempt by recipient. Strongly recommend rewriting."
             },
             {
                 "id":"add",
@@ -26,33 +26,33 @@
                 "id":"love",
                 "type":"info",
                 "pattern": "(raw_scores.conscientiousness.score < 0.5 && raw_scores.joy.score >= 0.5 && Math.max(raw_scores.openness.score, raw_scores.agreeableness.score, raw_scores.extraversion.score) > 0.85)",
-                "advice": "Either you're really into this person - or you're excited about a positive event in your life. If the latter, we're happy for you. If you're madly in love, we're also happy for you. And sometimes this is exactly what you want to convey. Just be careful not to come on too strong, too soon. Context and timing are everything!"
+                "advice": "Are you in love? Or just super happy? Either way, great! Please consider the context and the recipient before sending. Have a nice day <3"
             },
             {
                 "id":"borderline", 
                 "type":"warning", 
-                "pattern": "(raw_scores.conscientiousness.score < 0.5 && raw_scores.emotional_range.score >= 0.5 && raw_scores.joy < 0.5 && UTIL.CONFIDENCE(raw_scores) < 0)",
+                "pattern": "(raw_scores.conscientiousness.score < 0.5 && raw_scores.emotional_range.score >= 0.5 && raw_scores.joy < 0.5 && (raw_scores.confident.score - raw_scores.tentative.score) < 0)",
                 "advice": "Looks like you may be feeling insecure or anxious. If dealing with an unrelated issue, that is one thing. However, if feeling insecure about the relationship itself, there are healthier and more productive ways to express this: use I statements, be open about your feelings, and ask for clarification about any aspects of the relationship you may be unclear on."
             }
         ],
         "overall_advice": [
             {
                 "id": "generally_shitty",
-                "test": "(aggregate_score > 0 && aggregate_score < 40 && raw_scores.emotional_range.score < 0.5)",
+                "test": "(aggregate_score > 0 && aggregate_score < 50 && raw_scores.emotional_range.score < 0.5)",
                 "summary": "Negative",
                 "details": "<bad>Sending Not Advised:</bad> Message will be perceived as containing high levels of negative emotions.</b>",
                 "graph_color": "#FF0000"
             },
             {
                 "id": "borderline",
-                "test": "(aggregate_score > 0 && aggregate_score < 40 && raw_scores.emotional_range.score >= 0.5)",
+                "test": "(aggregate_score > 0 && aggregate_score < 50 && raw_scores.emotional_range.score >= 0.5)",
                 "summary": "Unstable",
                 "details": "<bad>Sending Not Advised:</bad> The combination of negativity and emotional range in this message may be perceived as 'neurotic' or as a sign of emotional instability. Suggest revising when you are feeling calmer.",
                 "graph_color": "#FF0000"
             },
             {
                 "id": "low_range_mixed",
-                "test": "(aggregate_score >= 40 && aggregate_score < 60 && raw_scores.emotional_range.score < 0.5)",
+                "test": "(aggregate_score >= 50 && aggregate_score < 70 && raw_scores.emotional_range.score < 0.5)",
                 "summary": "Neutral",
                 "details": "Content is emotionally neutral in tone with no obvious red flags. Often this is the case with shorter messages.",
                 "graph_color": "#FFFF00"
@@ -60,10 +60,10 @@
             },
             {
                 "id": "high_range_mixed",
-                "test": "(aggregate_score >= 40 && aggregate_score < 60 && raw_scores.emotional_range.score > 0.5)",
-                "summary": "Balanced",
+                "test": "(aggregate_score >= 50 && aggregate_score < 70 && raw_scores.emotional_range.score > 0.5)",
+                "summary": "Reasonable",
                 "details": "Emotionally expressive, yet balanced and realistic.",
-                "graph_color": "#0000FF"
+                "graph_color": "#FF0000"
             },
             {
                 "id": "regular_positive",
