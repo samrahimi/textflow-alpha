@@ -34,10 +34,8 @@ angular.module('starter.controllers', [])
       //save tne results to mass storage / DB
     }
 })
-.controller('LabCtrl', function($scope, $ionicLoading, $http) {   
-    
-    
-    
+.controller('LabCtrl', function($scope, $ionicLoading, $http) {  
+
     $scope.loadConfig = function() {
       $http.get('/user/config/user').then(function successCallback(response) {
             $JS_GLOBALS.contexts = response.data.contexts

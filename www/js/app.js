@@ -63,6 +63,15 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       }
     })
 
+     .state('app.faq', {
+      url: '/faq',
+      views: {
+        'menuContent': {
+              templateUrl: 'templates/faq.html'
+          }
+      }
+    })
+
 
 
 
