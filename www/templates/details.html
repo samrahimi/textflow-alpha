@@ -1,0 +1,21 @@
+<ion-view id="settings" view-title="Detailed Analysis"> 
+    <ion-content padding="true" scroll="true" has-header>
+    <!-- same circle graph from previous screen -->
+   <div class="chart" id="graph2"></div>
+   <h3 id="summary" class="results-text">{{advice.title}}</h3>
+   <!-- with a full explanation -->
+   <p style="text-align:center" id="explanation">{{advice.advice}}</p>
+
+    <h3 class="results-text" style="text-align:center">Emotional Analysis</h3>
+        <div class="row" ng-repeat="emo in emotions">
+            <div class="col">{{emo.friendly_name}}</div>
+            <div class="col">{{emo.score.toFixed(4) * 100}}%</div>
+        </div>
+    
+    <h3 class="results-text" style="text-align:center">Personality Traits</h3>
+        <div class="row" ng-repeat="emo in big5">
+            <div class="col">{{emo.friendly_name}}</div>
+            <div class="col">{{emo.score.toFixed(4) * 100}}%</div>
+        </div>
+  </ion-content>
+</ion-view>                   

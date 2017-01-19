@@ -67,6 +67,7 @@ angular.module('starter.controllers', [])
     if ($scope.Graph) {$scope.Graph.remove()}
     $scope.PlaceHolderCSS = "display:block" 
     $scope.Summary = ""
+    $scope.CTAText = ""
   })
 
   $scope.evaluate=function() {
@@ -79,11 +80,14 @@ angular.module('starter.controllers', [])
             algorithm: 'jung'
           }
       }).then(function successCallback(response) {
+          $JS_GLOBALS.results = response.data //For details view
+
           $ionicLoading.hide()
           $scope.PlaceHolderCSS = "display:none" //hacky hacky hacky
           $scope.Summary = response.data.advice.title
           $scope.Advice = response.data.advice.advice
           $scope.NormalizedScore = parseInt(response.data.aggregate_score)
+          $scope.CTAText  = "Tap the circle above to see detailed results"
           var opts = {
             percent: $scope.NormalizedScore, 
             size: 150, 
@@ -99,4 +103,33 @@ angular.module('starter.controllers', [])
       });
 
   }
+})
+.controller('DetailsCtrl', function($scope) {
+  
+    $scope.search = function(rawScores, query) {
+      var results = []
+      for (var r in rawScores) {
+          if (rawScores[r].category == query) 
+            results.push(rawScores[r])
+      }
+      return results
+    }
+
+    $scope.$on('$ionicView.enter', function(e) {
+          if ($scope.Graph) {$scope.Graph.remove()}
+
+          $scope.advice = $JS_GLOBALS.results.advice
+          $scope.emotions = $scope.search($JS_GLOBALS.results.raw_scores, "Emotion Tone")
+          $scope.big5 =   $scope.search($JS_GLOBALS.results.raw_scores, "Social Tone")
+          $scope.NormalizedScore = parseInt($JS_GLOBALS.results.aggregate_score)
+          var opts = {
+            percent: $scope.NormalizedScore, 
+            size: 150, 
+            lineWidth:15, 
+            rotate: 20,
+            lineColor: $JS_GLOBALS.results.advice.suggested_color
+          }
+          $scope.Graph = new CircleGraph(opts, document.getElementById('graph2'))
+          $scope.Graph.render() //Woohoo. Componentized a spaghetti script found on PasteBin.
+    })
 })
