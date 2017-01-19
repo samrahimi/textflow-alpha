@@ -1,7 +1,5 @@
 <ion-view id="settings" view-title="TextLab"> 
     <ion-content padding="true" scroll="true" has-header>
-
-
        <div class="list">
         <ion-radio ng-repeat="context in contexts"
                    ng-value="context.id"
@@ -9,5 +7,6 @@
                    name="context-picker">
           {{ context.title }}
         </ion-radio>
+        <div>
   </ion-content>
 </ion-view>                   

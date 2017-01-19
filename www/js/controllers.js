@@ -17,7 +17,7 @@ angular.module('starter.controllers', [])
 })
 .controller('SettingsCtrl', function($scope){
     $scope.data= {
-      context_id: $JS_GLOBALS.current_context.id
+      context_id: user_settings.context
     }
 
     //TODO: Get thee to a database! And same with the rules.json
