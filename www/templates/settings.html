@@ -4,6 +4,7 @@
         <ion-radio ng-repeat="context in contexts"
                    ng-value="context.id"
                    ng-model="data.context_id"
+                   ng-change="onContextChanged(context.id)"
                    name="context-picker">
           {{ context.title }}
         </ion-radio>

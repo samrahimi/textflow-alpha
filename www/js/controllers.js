@@ -1,12 +1,13 @@
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
+.controller('AppCtrl', function($scope, $ionicModal, $timeout, $http) {
   
-  //The current context, sent to the server with each message
-  $JS_GLOBALS.current_context = {
-        id:'dating.self',
-        title: 'Social / Dating'
-        }
+
+  //When the main view is loaded, get the available contexts 
+  //and the user's preferred contexts from the server. 
+  //Ya I know, $JS_GLOBALS would probably get me kicked out of Comp Sci 101
+
+
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
   // To listen for when this page is active (for example, to refresh data),
@@ -17,34 +18,57 @@ angular.module('starter.controllers', [])
 })
 .controller('SettingsCtrl', function($scope){
     $scope.data= {
-      context_id: user_settings.context
+      context_id: $JS_GLOBALS.current_context.id || 'business'
     }
 
-    //TODO: Get thee to a database! And same with the rules.json
-    $scope.contexts = [
-        {
-        id:'dating.self',
-        title: 'Dating / Relationships'
-        },
-        {
-          id:'business.general',
-          title: 'Business Communications'
-        }    
-      ]
+    $scope.contexts = $JS_GLOBALS.contexts
 
-    $scope.onChange = function(item) {
-      $JS_GLOBALS.current_context = item
+    //This gets called when user taps an item in the list of contexts
+    $scope.onContextChanged = function(id) {
+      $JS_GLOBALS.current_context_id = id
+      $JS_GLOBALS.current_context = $JS_GLOBALS.contexts.filter
+      (x => x.id == $JS_GLOBALS.current_context_id)[0]      
       console.log("New Context")
-      console.log(JSON.stringify($JS_GLOBALS.current_context, null, 2))
+      console.log(JSON.stringify( $JS_GLOBALS.current_context, null, 2))
+      //TODO: create a profile for each user (anonymouse / cookie based) and 
+      //save tne results to mass storage / DB
     }
 })
-.controller('LabCtrl', function($scope, $ionicLoading, $http) {
+.controller('LabCtrl', function($scope, $ionicLoading, $http) {   
+    
+    
+    
+    $scope.loadConfig = function() {
+      $http.get('/user/config/user').then(function successCallback(response) {
+            $JS_GLOBALS.contexts = response.data.contexts
+            $JS_GLOBALS.current_context_id = response.data.preferred_context_id
+            $JS_GLOBALS.current_context = $JS_GLOBALS.contexts.filter
+            (x => x.id == $JS_GLOBALS.current_context_id)[0]
+            $scope.Context = $JS_GLOBALS.current_context.title
+      });
+    }
+
   $scope.Message = "";
   $scope.Ruleset="";
   $scope.PlaceHolderCSS = "";
-  $scope.current_context = $JS_GLOBALS.current_context;
+  $scope.Context = "Loading...";
   $scope.showLoader = function() {$ionicLoading.show()}
   $scope.hideLoader = function() {$ionicLoading.hide()}
+
+  //Load context from server if not already cached in the browser
+  //$JS_GLOBALS is an app-wide cache.
+  $scope.$on('$ionicView.enter', function(e) {
+    if (!$JS_GLOBALS.current_context) {
+      $scope.loadConfig()
+    } else {
+      $scope.Context = $JS_GLOBALS.current_context.title
+    }
+    //Reset the UI
+    if ($scope.Graph) {$scope.Graph.remove()}
+    $scope.PlaceHolderCSS = "display:block" 
+    $scope.Summary = ""
+  })
+
   $scope.evaluate=function() {
     $ionicLoading.show()
     $http.post('/messages', 
@@ -67,8 +91,8 @@ angular.module('starter.controllers', [])
             rotate: 20,
             lineColor: response.data.advice.suggested_color
           }
-          var graph = new CircleGraph(opts, document.getElementById('graph'))
-          graph.render() //Woohoo. Componentized a spaghetti script found on PasteBin.
+          $scope.Graph = new CircleGraph(opts, document.getElementById('graph'))
+          $scope.Graph.render() //Woohoo. Componentized a spaghetti script found on PasteBin.
       }, function errorCallback(response) {
           $ionicLoading.hide()
           console.log("Error posting to /messages")

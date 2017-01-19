@@ -1,6 +1,6 @@
 {
 
-    "dating.self" :{
+    "dating" :{
         "status": "online",
         "title":"Dating & Relationships",
         "description": "Your friendly, virtual wing-person. Provides useful feedback on the messages you send to people you are dating, at any stage in the relationship. Combines pattern recognition with a weighted 12-point analysis to predicts how your communication is likely to be received, and provides practical guidance on how to improve the quality of your communication.",
@@ -61,7 +61,7 @@
             {
                 "id": "high_range_mixed",
                 "test": "(aggregate_score >= 50 && aggregate_score < 70 && raw_scores.emotional_range.score > 0.5)",
-                "summary": "Reasonable",
+                "summary": "Balanced",
                 "details": "Emotionally expressive, yet balanced and realistic.",
                 "graph_color": "#FF0000"
             },
@@ -80,7 +80,9 @@
             }
         ]
     },
-    "business.general" :{
+
+    "business" :
+    {
     "status": "online",
     "title":"Business Communications",
     "description": "Term sheets, cover letters, sales pitches - or a message to your coworker. Whatever you're trying to say, say it here first - the system is trained on the latest psycholinguistic research and will maximize the likelihood of a YES.",
@@ -89,76 +91,78 @@
         "negative": "(Math.max(raw_scores.anger.score, raw_scores.disgust.score, raw_scores.fear.score, raw_scores.sadness.score)+ raw_scores.tentative.score) / 2",
         "positive": "(raw_scores.conscientiousness.score + raw_scores.analytical.score + (2 * raw_scores.confident.score) + Math.max(raw_scores.openness.score, raw_scores.agreeableness.score, raw_scores.extraversion.score)) / 4"
     },
-    "patterns": [
-        {
-            "id":"mean",
-            "type":"warning",
-            "pattern": "(raw_scores.anger.score >= 0.5 && raw_scores.disgust >= 0.25)",
-            "advice": "Moderate to high levels of anger and disgust detected. This may be perceived as indicating contempt for your partner and is considered by couples therapists to be a relationship killer. Strongly consider revising."
-        },
-        {
-            "id":"add",
-            "type":"info",
-            "pattern": "(raw_scores.conscientiousness.score <= 0.25)",
-            "advice": "Your message may convey a low level of conscientiousness on your part. This can be great when situationally appropriate as it indicates spontaneity. Just remember that it does not show evidence of being responsible or discplined; some people care about this more than others, so use your best judgment. "
-        },
-        {
-            "id":"love",
-            "type":"info",
-            "pattern": "(raw_scores.conscientiousness.score < 0.5 && raw_scores.joy.score >= 0.5 && Math.max(raw_scores.openness.score, raw_scores.agreeableness.score, raw_scores.extraversion.score) > 0.85)",
-            "advice": "Either you're really into this person - or you're excited about a positive event in your life. If the latter, we're happy for you. If you're madly in love, we're also happy for you. And sometimes this is exactly what you want to convey. Just be careful not to come on too strong, too soon. Context and timing are everything!"
-        },
-        {
-            "id":"borderline", 
-            "type":"warning", 
-            "pattern": "(raw_scores.conscientiousness.score < 0.5 && raw_scores.emotional_range.score >= 0.5 && raw_scores.joy < 0.5 && UTIL.CONFIDENCE(raw_scores) < 0)",
-            "advice": "Looks like you may be feeling insecure or anxious. If dealing with an unrelated issue, that is one thing. However, if feeling insecure about the relationship itself, there are healthier and more productive ways to express this: use I statements, be open about your feelings, and ask for clarification about any aspects of the relationship you may be unclear on."
-        }
-    ],
-    "overall_advice": [
-        {
-            "id": "generally_shitty",
-            "test": "(aggregate_score > 0 && aggregate_score < 40 && raw_scores.emotional_range.score < 0.5)",
-            "summary": "Negative",
-            "details": "<bad>Sending Not Advised:</bad> Message will be perceived as containing high levels of negative emotions.</b>",
-            "graph_color": "#FF0000"
-        },
-        {
-            "id": "borderline",
-            "test": "(aggregate_score > 0 && aggregate_score < 40 && raw_scores.emotional_range.score >= 0.5)",
-            "summary": "Unstable",
-            "details": "<bad>Sending Not Advised:</bad> The combination of negativity and emotional range in this message may be perceived as 'neurotic' or as a sign of emotional instability. Suggest revising when you are feeling calmer.",
-            "graph_color": "#FF0000"
-        },
-        {
-            "id": "low_range_mixed",
-            "test": "(aggregate_score >= 40 && aggregate_score < 60 && raw_scores.emotional_range.score < 0.5)",
-            "summary": "Neutral",
-            "details": "Content is emotionally neutral in tone with no obvious red flags. Often this is the case with shorter messages.",
-            "graph_color": "#FFFF00"
+    "patterns": 
+    [
+            {
+                "id":"mean",
+                "type":"warning",
+                "pattern": "(raw_scores.anger.score >= 0.5 && raw_scores.disgust >= 0.25)",
+                "advice": "Moderate to high levels of anger and disgust detected. This may be perceived as indicating contempt for your partner and is considered by couples therapists to be a relationship killer. Strongly consider revising."
+            },
+            {
+                "id":"add",
+                "type":"info",
+                "pattern": "(raw_scores.conscientiousness.score <= 0.25)",
+                "advice": "Your message may convey a low level of conscientiousness on your part. This can be great when situationally appropriate as it indicates spontaneity. Just remember that it does not show evidence of being responsible or discplined; some people care about this more than others, so use your best judgment. "
+            },
+            {
+                "id":"love",
+                "type":"info",
+                "pattern": "(raw_scores.conscientiousness.score < 0.5 && raw_scores.joy.score >= 0.5 && Math.max(raw_scores.openness.score, raw_scores.agreeableness.score, raw_scores.extraversion.score) > 0.85)",
+                "advice": "Either you're really into this person - or you're excited about a positive event in your life. If the latter, we're happy for you. If you're madly in love, we're also happy for you. And sometimes this is exactly what you want to convey. Just be careful not to come on too strong, too soon. Context and timing are everything!"
+            },
+            {
+                "id":"borderline", 
+                "type":"warning", 
+                "pattern": "(raw_scores.conscientiousness.score < 0.5 && raw_scores.emotional_range.score >= 0.5 && raw_scores.joy < 0.5 && UTIL.CONFIDENCE(raw_scores) < 0)",
+                "advice": "Looks like you may be feeling insecure or anxious. If dealing with an unrelated issue, that is one thing. However, if feeling insecure about the relationship itself, there are healthier and more productive ways to express this: use I statements, be open about your feelings, and ask for clarification about any aspects of the relationship you may be unclear on."
+            }
+        ],
+        "overall_advice": 
+        [
+            {
+                "id": "generally_shitty",
+                "test": "(aggregate_score > 0 && aggregate_score < 40 && raw_scores.emotional_range.score < 0.5)",
+                "summary": "Negative",
+                "details": "<bad>Sending Not Advised:</bad> Message will be perceived as containing high levels of negative emotions.</b>",
+                "graph_color": "#FF0000"
+            },
+            {
+                "id": "borderline",
+                "test": "(aggregate_score > 0 && aggregate_score < 40 && raw_scores.emotional_range.score >= 0.5)",
+                "summary": "Unstable",
+                "details": "<bad>Sending Not Advised:</bad> The combination of negativity and emotional range in this message may be perceived as 'neurotic' or as a sign of emotional instability. Suggest revising when you are feeling calmer.",
+                "graph_color": "#FF0000"
+            },
+            {
+                "id": "low_range_mixed",
+                "test": "(aggregate_score >= 40 && aggregate_score < 60 && raw_scores.emotional_range.score < 0.5)",
+                "summary": "Neutral",
+                "details": "Content is emotionally neutral in tone with no obvious red flags. Often this is the case with shorter messages.",
+                "graph_color": "#FFFF00"
 
-        },
-        {
-            "id": "high_range_mixed",
-            "test": "(aggregate_score >= 40 && aggregate_score < 60 && raw_scores.emotional_range.score > 0.5)",
-            "summary": "Balanced",
-            "details": "Emotionally expressive, yet balanced and realistic.",
-            "graph_color": "#0000FF"
-        },
-        {
-            "id": "regular_positive",
-            "test": "(aggregate_score >=60 && aggregate_score < 80)",
-            "summary": "Positive",
-            "details": "This message has a positive overall tone and will likely be perceived as such. If there are no warnings, you can send this message with confidence.",
-            "graph_color": "#00FF00"
-        },
-        {
-            "test": "(aggregate_score >= 80)",
-            "summary": "Glowing",
-            "details": "Your message glows with positive emotions. Usually, this is a good thing; note that in certain contexts it may be interpreted as romantic interest.",
-            "graph_color":"#00FF00"
-        }
-    ]
-}
+            },
+            {
+                "id": "high_range_mixed",
+                "test": "(aggregate_score >= 40 && aggregate_score < 60 && raw_scores.emotional_range.score > 0.5)",
+                "summary":"Overly Emotional",
+                "details": "Emotionally expressive, yet balanced and realistic.",
+                "graph_color": "#0000FF"
+            },
+            {
+                "id": "regular_positive",
+                "test": "(aggregate_score >=60 && aggregate_score < 80)",
+                "summary": "Positive",
+                "details": "This message has a positive overall tone and will likely be perceived as such. If there are no warnings, you can send this message with confidence.",
+                "graph_color": "#00FF00"
+            },
+            {
+                "test": "(aggregate_score >= 80)",
+                "summary": "Glowing",
+                "details": "Your message glows with positive emotions. Usually, this is a good thing; note that in certain contexts it may be interpreted as romantic interest.",
+                "graph_color":"#00FF00"
+            }
+        ]
+    }
 
 }

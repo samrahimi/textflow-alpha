@@ -13,6 +13,10 @@ class CircleGraph {
         })
     }
 
+    remove() {
+        this.el.innerHTML = ''
+    }
+
     //Should be a private method. Called by render
     drawCircle(color, lineWidth, percent, radius) {
                 percent = Math.min(Math.max(0, percent || 1), 1);
