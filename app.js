@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 
 var user = require('./routes/user');
 var messages = require('./routes/messages')
+var slack = require('./routes/slack')
 
 var app = express();
 
@@ -14,13 +15,14 @@ var app = express();
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'www')));
 
 //app.use('/', index);
 app.use('/user',user);
 app.use('/messages', messages);
+app.use('/slack', slack);
 
 
 module.exports = app;

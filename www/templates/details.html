@@ -9,13 +9,13 @@
     <h3 class="results-text" style="text-align:center">Emotional Analysis</h3>
         <div class="row" ng-repeat="emo in emotions">
             <div class="col">{{emo.friendly_name}}</div>
-            <div class="col">{{emo.score.toFixed(4) * 100}}%</div>
+            <div class="col">{{emo.score.toFixed(3) * 100}}%</div>
         </div>
     
     <h3 class="results-text" style="text-align:center">Personality Traits</h3>
         <div class="row" ng-repeat="emo in big5">
             <div class="col">{{emo.friendly_name}}</div>
-            <div class="col">{{emo.score.toFixed(4) * 100}}%</div>
+            <div class="col">{{emo.score.toFixed(3) * 100}}%</div>
         </div>
   </ion-content>
 </ion-view>                   
