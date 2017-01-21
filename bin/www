@@ -23,8 +23,8 @@ app.set('port', port);
  * Create HTTP and HTTPS servers
  */
 var options = {
-  key: fs.readFileSync('../certs/privkey.pem'),
-  cert: fs.readFileSync('/certs/fullchain.pem')
+  key: fs.readFileSync('/etc/letsencrypt/live/textflow.us/privkey.pem'),
+  cert: fs.readFileSync('/etc/letsencrypt/live/textflow.us/fullchain.pem')
 };
 
 var server = http.createServer(app).listen(port);
