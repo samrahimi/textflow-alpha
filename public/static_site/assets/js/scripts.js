@@ -25,7 +25,16 @@ jQuery(document).ready(function() {
 	$('.top-content .text').waypoint(function() {
 		$('nav').toggleClass('navbar-no-bg');
 	});
-	
+
+	//signup button
+	$('.btn-signup').on('click', function(e) {
+		e.preventDefault();
+		$.get('/signup?email='+$('#email').val(), function(response) {
+			$(".btn-signup").attr("disabled","disabled")
+			$("#email").val("")
+			$("#thanks").show()
+		})
+	})
     /*
         Background slideshow
     */

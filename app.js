@@ -8,7 +8,7 @@ var bodyParser = require('body-parser');
 var user = require('./routes/user');
 var messages = require('./routes/messages')
 var slack = require('./routes/slack')
-
+var signup = require('./routes/signup')
 var app = express();
 
 // uncomment after placing your favicon in /public
@@ -27,6 +27,7 @@ app.use('/beta', express.static(path.join(__dirname, 'public/beta')));
 app.use('/user',user);
 app.use('/messages', messages);
 app.use('/slack', slack);
+app.use('/signup', signup);
 
 
 module.exports = app;

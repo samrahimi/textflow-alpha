@@ -151,7 +151,6 @@ img { max-width: 100%; }
 	border-bottom: 1px dotted #aaa;
 }
 
-
 /***** Top menu *****/
 
 .navbar {
@@ -409,6 +408,11 @@ ul.navbar-nav {
 	padding-top: 30px;
 }
 
+/* looks bad on mobile
+#thanks p {
+	color: #B41D48
+}
+*/
 
 /***** About us *****/
 
