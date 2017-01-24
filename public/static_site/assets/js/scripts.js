@@ -33,6 +33,12 @@ jQuery(document).ready(function() {
 			$(".btn-signup").attr("disabled","disabled")
 			$("#email").val("")
 			$("#thanks").show()
+			//google analytics - track conversion
+			ga('send', 'event', {
+				eventCategory: 'signup_form_simple',
+				eventAction: 'submit',
+				eventLabel: 'Jan 2017 Prelaunch Campaign'
+			});
 		})
 	})
     /*
