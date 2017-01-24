@@ -55,9 +55,14 @@ router.post('/', function(req, res, next) {
 
             /* This needs to be refactored into a rules DB */
             /* But it's a nice async way of responding */
-            if ((results.raw_scores.anger.score+results.raw_scores.disgust.score) > 0.5) {
+            if (results.raw_scores.anger.score > 0.5 || results.raw_scores.disgust.score > 0.5) {
                 slackbot.sendMessage("Hey there. Take a deep breath. You're getting a little heated.", "@"+username)
             }
+
+            if (results.aggregate_score < 50) {
+                slackbot.sendMessage(results.advice.advice, "@"+username)
+            }
+
             
              res.send({status:'ok'}) //So slack knows we responded. 
             })

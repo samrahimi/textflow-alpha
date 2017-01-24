@@ -85,7 +85,7 @@ angular.module('starter.controllers', [])
           $scope.Summary = response.data.advice.title
           $scope.Advice = response.data.advice.advice
           $scope.NormalizedScore = parseInt(response.data.aggregate_score)
-          $scope.CTAText  = "Tap the circle above to see detailed results"
+          $scope.CTAText  = "Tap for detailed analysis"
           var opts = {
             percent: $scope.NormalizedScore, 
             size: 150, 
