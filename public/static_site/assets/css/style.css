@@ -210,6 +210,15 @@ ul.navbar-nav {
 	margin-top: 35px;
 }
 
+/***** Darken the background image injected by Backstretch */
+.backstretch {
+	background-color:black !important;
+}
+
+.backstretch img {
+	opacity:0.5 !important;
+}
+
 
 /***** Features *****/
 
