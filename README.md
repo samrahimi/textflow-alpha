@@ -1,39 +1,68 @@
 # tijuana-sunrise
-relationship analytics mvp - launch offering, the forever project
-let's rephrase. it's text analytics to help you get your fucking point across lol
 
-what this shit does (mMVP - alpha)
+This Repo Contains:
 
-- write message (sms, email, facebook, okc/tinder)
-- send to the hive mind
-- display a summary prediction of how average human beings will emotionally respond to the message 
-    - and suggestions for how to rewrite when one or more areas come off as severely out of balance.
-- hand off to parent OS with generic "share" of (possibly rewritten) message.
-(to the user it seems like a seamless integration :P)
+- TextFlow.us marketing site
+- TextFlow beta webapp
+- TextFlow alpha Slack integration
 
+#Installation and Deployment on a new server
 
-what this shit does (MVP)
-all of the above PLUS
+The following assumes that the domain is textflow.us and that you're 
+installing on a modern Debian-compatible flavor of Linux
 
-- collects every text / email /gchat sent (and maybe fb if we can swing it)
-- analyzes at time of collection
-- if message is sufficiently emo / angry / hamsterish, user receives a push notification.
+# Dependencies
 
-installation as a service running on port 80
+MongoDB 3.4 or higher
+- Refer to mongo docs
 
-1. create a new .service file for the environment based on /service/test.service (user specified should have root privileges)
-2. (on the server) sudo cp ./service/ServiceName.service /etc/systemd/system
-3. (on the server) sudo systemctl start ServiceName
+Secure your MongoDB (You may wish to use different credentials - if you do, update /lib/config.js)
 
-check if service started / is running 
-    sudo journalctl -u ServiceName
-
-stop service
-    sudo systemctl stop ServiceName
+mongo
+use textflow
+db.createUser({user:"singularityAdmin", pwd:"KillerApp123!", roles: [{role:"userAdminAnyDatabase", db: "textflow"}]})
 
 
+Generate your SSL Certificates (good ones, for free)
 
-  API Documentation
+sudo apt-get install certbot -t jessie-backports
+sudo certbot certonly
+- enter textflow.us for the domain and accept default settings for everything else
+
+#Application - Install and Test
+1. git clone https://github.com/samrahimi/tijuana-sunrise.git
+2. sudo npm install
+3. sudo npm start (For Testing - the site should come up on http and https)
+
+#Running As A Service
+
+If you want the site to stay up when you disconnect from the server, you need to run it as a service.
+I did most of the work for you... the test.service file will be correct except for 
+path names, which are probably obvious - and the username.
+
+
+1. Create a user with root privileges (e.g. node_service). This account should not be used by humans for security reasons!
+2. nano ./service/test.service and update paths, working directory, etc.
+2. sudo cp ./service/test.service /etc/systemd/system
+3. sudo systemctl start test
+4. check by going to textflow.us in your browser or use: sudo journalctl -u test
+
+
+
+#Deploying Updates
+
+This part is easy as fuck. If someone takes the time to 
+set up environment variables for host and port instead of 
+hardcoding them in the config, that would rock ;)
+
+1. Check that config.js is set to production values
+2. git add / commit / push 
+3. SSH into server
+4. Stop the service: sudo systemctl stop test
+5. git pull
+6. Start the service sudo systemctl start test
+
+#API Documentation
 
   POST /message Response Format:
  
