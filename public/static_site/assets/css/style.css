@@ -171,16 +171,15 @@ ul.navbar-nav {
 .navbar-inverse ul.navbar-nav li a:focus { color: #fff; outline: 0; opacity: 1; }
 
 .navbar-brand {
-	width: 140px;
-	height: 60px;
-	background: url(../img/logo.png) left center no-repeat;
-	background-size: 60px 60px;
-	text-indent:50px;
-	font-size:50px;
-	line-height:30px !important;
-	font-family: 'Pacifico', cursive;
+    width: 140px;
+    height: 60px;
+    background: url(../img/logo-clean.png) left center no-repeat;
+    background-size: 50px 50px;
+    text-indent: 45px;
+    font-size: 32pt;
+    line-height: 26pt !important;
+    font-family: 'Pacifico', cursive;
 }
-
 .navbar-toggle {
 	margin-top: 13px;
 	margin-bottom: 13px;

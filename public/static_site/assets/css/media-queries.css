@@ -70,8 +70,11 @@ only screen and (                min-resolution: 192dpi),
 only screen and (                min-resolution: 2dppx) {
 	
 	/* logo */
+
+
+	/*
     .navbar-brand {
-    	background-image: url(../img/logo@2x.png) !important; background-repeat: no-repeat !important; background-size: 43px 43px !important;
-    }
+    	background-image: url(../img/logo-clean@2x.png) !important; background-repeat: no-repeat !important; background-size: 50px 50px !important;
+    } */
 	
 }
