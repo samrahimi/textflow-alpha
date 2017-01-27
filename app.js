@@ -22,6 +22,7 @@ app.use(cookieParser());
 
 app.use('/', express.static(path.join(__dirname, 'public/static_site')));
 app.use('/beta', express.static(path.join(__dirname, 'public/beta')));
+app.use('/mdl', express.static(path.join(__dirname, 'public/mdl')));
 
 
 //app.use('/', index);

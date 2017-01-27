@@ -73,7 +73,8 @@ angular.module('starter.controllers', [])
       {
           message:this.Message,
           context: $JS_GLOBALS.current_context
-      }).then(function successCallback(response) {
+      }).then(function successCallback(response) 
+      {
           $JS_GLOBALS.results = response.data //For details view
 
           $ionicLoading.hide()
@@ -91,7 +92,8 @@ angular.module('starter.controllers', [])
           }
           $scope.Graph = new CircleGraph(opts, document.getElementById('graph'))
           $scope.Graph.render() //Woohoo. Componentized a spaghetti script found on PasteBin.
-      }, function errorCallback(response) {
+      }, function errorCallback(response) 
+      {
           $ionicLoading.hide()
           console.log("Error posting to /messages")
       });
@@ -111,10 +113,12 @@ angular.module('starter.controllers', [])
 
     $scope.$on('$ionicView.enter', function(e) {
           if ($scope.Graph) {$scope.Graph.remove()}
-
+          var rawScoresDisplay = $JS_GLOBALS.keyValueToArray($JS_GLOBALS.results.raw_scores).
+                                  map(x => ({score: parseInt(x.score * 100), category: x.category, key: x.key, friendly_name: x.friendly_name}))
+          
           $scope.advice = $JS_GLOBALS.results.advice
-          $scope.emotions = $scope.search($JS_GLOBALS.results.raw_scores, "Emotion Tone")
-          $scope.big5 =   $scope.search($JS_GLOBALS.results.raw_scores, "Social Tone")
+          $scope.emotions = rawScoresDisplay.filter(x => x.category == "Emotion Tone")
+          $scope.big5 =   rawScoresDisplay.filter(x => x.category == "Social Tone")
           $scope.NormalizedScore = parseInt($JS_GLOBALS.results.aggregate_score)
           var opts = {
             percent: $scope.NormalizedScore, 

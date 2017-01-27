@@ -6,16 +6,16 @@
    <!-- with a full explanation -->
    <p style="text-align:center" id="explanation">{{advice.advice}}</p>
 
-    <h3 class="results-text" style="text-align:center">Emotional Analysis</h3>
+    <h3 class="results-text" style="text-align:center">Emotional State</h3>
         <div class="row" ng-repeat="emo in emotions">
             <div class="col">{{emo.friendly_name}}</div>
-            <div class="col">{{emo.score.toFixed(3) * 100}}%</div>
+            <div class="col">{{emo.score}}%</div>
         </div>
     
-    <h3 class="results-text" style="text-align:center">Personality Traits</h3>
+    <h3 class="results-text" style="text-align:center">Current Persona</h3>
         <div class="row" ng-repeat="emo in big5">
             <div class="col">{{emo.friendly_name}}</div>
-            <div class="col">{{emo.score.toFixed(3) * 100}}%</div>
+            <div class="col">{{emo.score}}%</div>
         </div>
   </ion-content>
 </ion-view>                   
