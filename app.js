@@ -9,6 +9,7 @@ var user = require('./routes/user');
 var messages = require('./routes/messages')
 var slack = require('./routes/slack')
 var signup = require('./routes/signup')
+var contexts = require('./routes/contexts')
 var app = express();
 
 // uncomment after placing your favicon in /public
@@ -28,6 +29,6 @@ app.use('/user',user);
 app.use('/messages', messages);
 app.use('/slack', slack);
 app.use('/signup', signup);
-
+app.use('/contexts', contexts);
 
 module.exports = app;

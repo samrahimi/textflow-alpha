@@ -36,12 +36,11 @@ angular.module('starter.controllers', [])
 })
 .controller('LabCtrl', function($scope, $ionicLoading, $http) {  
 
-    $scope.loadConfig = function() {
-      $http.get('/user/config/user').then(function successCallback(response) {
-            $JS_GLOBALS.contexts = response.data.contexts
-            $JS_GLOBALS.current_context_id = response.data.preferred_context_id
-            $JS_GLOBALS.current_context = $JS_GLOBALS.contexts.filter
-            (x => x.id == $JS_GLOBALS.current_context_id)[0]
+    $scope.loadAvailableContexts = function() {
+      $http.get('/contexts').then(function successCallback(response) {
+            $JS_GLOBALS.contexts = response.data
+            $JS_GLOBALS.current_context = $JS_GLOBALS.contexts[0]
+            $JS_GLOBALS.current_context_id = $JS_GLOBALS.current_context.id
             $scope.Context = $JS_GLOBALS.current_context.title
       });
     }
@@ -57,7 +56,7 @@ angular.module('starter.controllers', [])
   //$JS_GLOBALS is an app-wide cache.
   $scope.$on('$ionicView.enter', function(e) {
     if (!$JS_GLOBALS.current_context) {
-      $scope.loadConfig()
+      $scope.loadAvailableContexts()
     } else {
       $scope.Context = $JS_GLOBALS.current_context.title
     }
@@ -73,10 +72,7 @@ angular.module('starter.controllers', [])
     $http.post('/messages', 
       {
           message:this.Message,
-          context: {
-            ruleset_id: $JS_GLOBALS.current_context.id,
-            algorithm: 'jung'
-          }
+          context: $JS_GLOBALS.current_context
       }).then(function successCallback(response) {
           $JS_GLOBALS.results = response.data //For details view
 
