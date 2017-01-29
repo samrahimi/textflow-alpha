@@ -1,5 +1,12 @@
 <ion-view id="settings" view-title="Detailed Analysis"> 
-    <ion-content padding="true" scroll="true" has-header>
+    <ion-nav-title>
+                  <img alt="TextFlow Logo" height="40" src="img/logo-full.png">
+    </ion-nav-title>
+    <div class="bar bar-subheader">
+    <h2 class="title">Detailed Analysis</h2>
+    </div>
+
+    <ion-content padding="true" scroll="true" has-header has-subheader>
     <!-- same circle graph from previous screen -->
    <div class="chart" id="graph2"></div>
    <h3 id="summary" class="results-text">{{advice.title}}</h3>

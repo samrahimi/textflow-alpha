@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var config = require('../lib/config')
 var engine = require('../adaptors/'+config.adaptors.engine)
-var storage = require('../adaptors/'+config.adaptors.storage.adaptor)
+var storage = require('../adaptors/mongo_storage')
 //Dynamically load the AI library based on context when it is ready to be called: var jung = require('../lib/jung')
 
 /* Data ingestion and analysis endpont
@@ -22,26 +22,29 @@ var storage = require('../adaptors/'+config.adaptors.storage.adaptor)
 router.post('/', function(req, res, next) {
   var message = req.body.message
   var context = req.body.context
-
-  console.log("Message: "+message)
-  console.log("Context: " +context)
-  /* Initialize the low level parsing and emotion analysis engine with credentials */ 
-  engine.init(config.credentials[config.adaptors.engine])
-  /* Request the low level analysis (note: we may want to group messages and / or cache them, because this request costs a penny each time) */
-  engine.evaluate(message, function(msg, raw_scores){
-    var module_name = context.algorithm || 'jung' 
-    var ai_module = require('../lib/'+module_name)
-    ai_module.analyze(msg, raw_scores, context, function(results) {
-      
-      /* Results will be used in the future for statistical analysis and ML / pattern recognition */
-      storage.write_data_async(results, function(err) {
-        if (err) console.log(err.toString())
+  message.context = context
+  //Save message, so it has an _id
+  storage.write_data('Messages', {message: message, context:context}, function(err, message_object) {
+    console.log("new message id: "+message_object._id)
+    console.log("context id: " +context.id)
+    
+    /* Initialize the low level parsing and emotion analysis engine with credentials */ 
+    engine.init(config.credentials[config.adaptors.engine])
+    /* Request the low level analysis (note: we may want to group messages and / or cache them, because this request costs a penny each time) */
+    engine.evaluate(message_object.message, function(raw_scores){
+      var ai_module = require('../lib/algorithms/jung')
+      ai_module.analyze(message_object, raw_scores, function(results) {
+        results.api_version = config.version //for debugging
+        /* Save on a separate thread, no need for user to wait */
+        storage.write_data("Scores", results, function(err) {
+          if (err) console.log(err.toString())
+        })
+        /* Return results to client */
+        res.send(results)   //everything the UI needs to mess wit yo mind ;)
       })
-      /* Return results to client */
-      results.api_version = config.version //for debugging
-      res.send(results)   //everything the UI needs to mess wit yo mind ;)
     })
   })
+
 });
 
 module.exports = router;

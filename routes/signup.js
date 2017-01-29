@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var config = require('../lib/config')
-var mongo = require('../adaptors/mongo-storage')
+var mongo = require('../adaptors/mongo_storage')
 //Email collector for public website
 router.get('/', function(req, res, next) {
     var email = req.query.email

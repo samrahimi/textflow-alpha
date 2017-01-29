@@ -39,7 +39,7 @@ evaluate: function(message, callback) {
           }
         }
         console.log(JSON.stringify(rawToneScores, null, 2));
-        callback(message, rawToneScores)
+        callback(rawToneScores)
       }
   });
 }

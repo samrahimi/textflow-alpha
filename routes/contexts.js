@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var config = require('../lib/config')
-var mongo = require('../adaptors/mongo-storage')
+var mongo = require('../adaptors/mongo_storage')
 //Get summary of available contexts
 router.get('/', function(req, res, next) {
     mongo.DB(function(db) {

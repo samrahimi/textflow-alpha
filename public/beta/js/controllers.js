@@ -25,9 +25,12 @@ angular.module('starter.controllers', [])
 
     //This gets called when user taps an item in the list of contexts
     $scope.onContextChanged = function(id) {
+      var newContext = $JS_GLOBALS.contexts.filter
+      (x => x.id == id)[0]
+      $JS_GLOBALS.current_context.id = newContext.id
+      $JS_GLOBALS.current_context.title =  newContext.title   
       $JS_GLOBALS.current_context_id = id
-      $JS_GLOBALS.current_context = $JS_GLOBALS.contexts.filter
-      (x => x.id == $JS_GLOBALS.current_context_id)[0]      
+ 
       console.log("New Context")
       console.log(JSON.stringify( $JS_GLOBALS.current_context, null, 2))
       //TODO: create a profile for each user (anonymouse / cookie based) and 
@@ -39,7 +42,8 @@ angular.module('starter.controllers', [])
     $scope.loadAvailableContexts = function() {
       $http.get('/contexts').then(function successCallback(response) {
             $JS_GLOBALS.contexts = response.data
-            $JS_GLOBALS.current_context = $JS_GLOBALS.contexts[0]
+            $JS_GLOBALS.current_context.id = $JS_GLOBALS.contexts[0].id
+            $JS_GLOBALS.current_context.title = $JS_GLOBALS.contexts[0].title
             $JS_GLOBALS.current_context_id = $JS_GLOBALS.current_context.id
             $scope.Context = $JS_GLOBALS.current_context.title
       });
@@ -55,7 +59,7 @@ angular.module('starter.controllers', [])
   //Load context from server if not already cached in the browser
   //$JS_GLOBALS is an app-wide cache.
   $scope.$on('$ionicView.enter', function(e) {
-    if (!$JS_GLOBALS.current_context) {
+    if (!$JS_GLOBALS.current_context.id) {
       $scope.loadAvailableContexts()
     } else {
       $scope.Context = $JS_GLOBALS.current_context.title
@@ -113,8 +117,14 @@ angular.module('starter.controllers', [])
 
     $scope.$on('$ionicView.enter', function(e) {
           if ($scope.Graph) {$scope.Graph.remove()}
+
+          //This bullshit is because you can't use parseint in the template tag
           var rawScoresDisplay = $JS_GLOBALS.keyValueToArray($JS_GLOBALS.results.raw_scores).
-                                  map(x => ({score: parseInt(x.score * 100), category: x.category, key: x.key, friendly_name: x.friendly_name}))
+                                  map(x => 
+                                  ({score: parseInt(x.score * 100), 
+                                    category: x.category, 
+                                    key: x.key, 
+                                    friendly_name: x.friendly_name}))
           
           $scope.advice = $JS_GLOBALS.results.advice
           $scope.emotions = rawScoresDisplay.filter(x => x.category == "Emotion Tone")
