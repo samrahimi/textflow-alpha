@@ -1,0 +1,29 @@
+<ion-view id="lab" view-title="TextFlow"> 
+      <ion-nav-title>
+                  <img alt="TextFlow Logo" height="40" src="img/logo-full.png">
+      </ion-nav-title>
+
+    <ion-content padding="true" scroll="false" has-header>
+                <div class="list">
+                    <div class="item">
+                            Message Context: 
+                            <a class="calm" href="#/app/settings" id="btn-choose-content">{{Context}}</a>
+                    </div>
+                    <div class="item item-input">
+                        <textarea ng-model="Message" id="message" placeholder="Type or paste the communication to be analyzed. Specify the context for additional insights"></textarea>
+                    </div>
+                    <a ng-click="evaluate()" id="btn-analyze-text" class="button button-positive  button-block">Analyze</a>
+                </div>
+                <div id="results" style="margin-bottom:10px;overflow:auto">
+                    <h3 style="{{PlaceHolderCSS}}" class="results-placeholder">
+                        Tap "Analyze" above to calculate your E-Score.
+                    </h3>
+                    <!-- This is thedisplay circle graph. See js/circle-graph.js -->
+                    <div class="chart" id="graph" onclick="location.href='#/app/details'"></div>
+                    <!-- These display the overall results in words -->
+                    <h3 id="summary" onclick="location.href='#/app/details'" class="results-text">{{Summary}}</div></h3>
+                    <p id="results_cta" style="font-size:9pt;padding-top:-10px" class="results-text">{{CTAText}}</p>
+
+                </div>
+    </ion-content>
+</ion-view>

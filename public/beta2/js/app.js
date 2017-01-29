@@ -73,19 +73,14 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     })
 
     .state('app.dashboard', {
-      url: '/dashboard,',
+      url: '/dashboard',
       views: {
         'menuContent': {
               templateUrl: 'templates/dashboard.html',
-              controller: 'DashboardController'
+              controller: 'DashboardCtrl'
           }
       }
     })
-
-
-
-
-   
   .state('app.chat', {
     url: '/chat',
     views: {

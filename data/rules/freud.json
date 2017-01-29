@@ -1,10 +1,72 @@
 {
-        "dating.self" :
+        "emotional_intelligence.default" :
         { 
             "status": "online",
-            "title":"Dating | Your Messages",
-            "description": "Alternative algorithm for assessing messages sent by you in a dating context. Considered unreliable, use for testing purposes only.",
-            "weights" : {
+            "title":"General",
+            "description": "Simple threshold-based analysis for messages sent or received.",
+            "thresholds" : 
+            {
+                "emotions": 
+                {
+                    "display": {
+                        "high": 0.5,
+                        "low": -1   
+                    },
+                    "alert" : {
+                        "high": 0.75,
+                        "low": -1   
+                    },
+                    "graphic": {
+                        '<svg class="visualization" width="100%" height="100%" viewBox="0 0 1700 1414" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve">
+                            <defs id="main-defs">
+                                                            </defs>
+                        <filter id="icon-filter"><feColorMatrix in="SourceGraphic" color-interpolation-filters="sRGB" type="matrix" values="0 0 0 0 0    0 0 0 0 0    0 0 0 0 0    0 0 0 1 0"></feColorMatrix></filter><rect class="visualization-background" x="0" y="0" width="1700" height="1414" style="fill: rgb(255, 255, 255);"></rect><g class="grids"><g class="grids-horizontal"></g><g class="grids-vertical"></g></g><text class="visualization-title" x="850" y="150" text-anchor="middle" font-size="72px" font-family="BebasNeueBold" width="1200" style="fill: rgb(0, 0, 0);"><tspan>The Primary Emotions</tspan></text><text class="visualization-author" x="1550" y="1348" width="600" text-anchor="end" font-size="36px" font-family="Roboto" style="fill: rgb(0, 0, 0);"><tspan>Sam Rahimi</tspan></text><g class="content" width="1200" height="914"><circle class="cycle-circle" fill="none" stroke-width="3" cx="850" cy="819.5" r="232" stroke="#d8d8d8"></circle><g class="node" data-index="0"><circle r="10" cx="850" cy="587.5" style="fill: rgb(216, 216, 216);"></circle><image width="150" height="100" filter="url(#icon-filter)" x="775" y="300" xlink:href="https://adioma.com/assets/icons/fear.png" transform="matrix(1, 0, 0, 1, 0, 0)" style="opacity: 0.9; fill: rgb(0, 0, 0);"></image><text width="200" height="110" text-anchor="middle" line-height="25.6" font-size="19.200000000000003px" font-family="Roboto" x="850" y="415" style="fill: rgb(0, 0, 0);"><tspan dy="28.799999999999997" font-size="28.799999999999997px" font-family="Roboto" style="font-weight: bold;">Fear</tspan><tspan x="850" dy="25.6">feeling afraid.</tspan></text></g><g class="node" data-index="1"><circle r="10" cx="1070.6451117804756" cy="747.8080573050122" style="fill: rgb(216, 216, 216);"></circle><image width="150" height="100" filter="url(#icon-filter)" x="1162.0800021321274" y="581.2300832893964" xlink:href="https://adioma.com/assets/icons/bang-hand.png" transform="matrix(1, 0, 0, 1, 0, 0)" style="opacity: 0.9; fill: rgb(0, 0, 0);"></image><text width="200" height="110" text-anchor="middle" line-height="25.6" font-size="19.200000000000003px" font-family="Roboto" x="1237.0800021321274" y="696.2300832893964" style="fill: rgb(0, 0, 0);"><tspan dy="28.799999999999997" font-size="28.799999999999997px" font-family="Roboto" style="font-weight: bold;">Anger</tspan><tspan x="1237.0800021321274" dy="25.6">feeling angry. A</tspan><tspan x="1237.0800021321274" dy="25.6">stronger word for</tspan><tspan x="1237.0800021321274" dy="25.6">anger is rage.</tspan></text></g><g class="node" data-index="2"><circle r="10" cx="986.3661785318537" cy="1007.1919426949878" style="fill: rgb(216, 216, 216);"></circle><image width="150" height="100" filter="url(#icon-filter)" x="1014.2285976830365" y="1036.2699167106036" xlink:href="https://adioma.com/assets/icons/depression.png" transform="matrix(-1, 0, 0, 1, 2178, 0)" style="opacity: 0.9; fill: rgb(0, 0, 0);"></image><text width="200" height="110" text-anchor="middle" line-height="25.6" font-size="19.200000000000003px" font-family="Roboto" x="1089.2285976830365" y="1151.2699167106036" style="fill: rgb(0, 0, 0);"><tspan dy="28.799999999999997" font-size="28.799999999999997px" font-family="Roboto" style="font-weight: bold;">Sadness</tspan><tspan x="1089.2285976830365" dy="25.6">feeling  sorrow, grief  or</tspan><tspan x="1089.2285976830365" dy="25.6">depression.</tspan></text></g><g class="node" data-index="3"><circle r="10" cx="713.6338214681463" cy="1007.1919426949878" style="fill: rgb(216, 216, 216);"></circle><image width="150" height="100" filter="url(#icon-filter)" x="535.7714023169635" y="1036.2699167106036" xlink:href="https://adioma.com/assets/icons/confidence.png" transform="matrix(-1, 0, 0, 1, 1220, 0)" style="opacity: 0.9; fill: rgb(0, 0, 0);"></image><text width="200" height="110" text-anchor="middle" line-height="25.6" font-size="19.200000000000003px" font-family="Roboto" x="610.7714023169635" y="1151.2699167106036" style="fill: rgb(0, 0, 0);"><tspan dy="28.799999999999997" font-size="28.799999999999997px" font-family="Roboto" style="font-weight: bold;">Joy</tspan><tspan x="610.7714023169635" dy="25.6">feeling happy. Other</tspan><tspan x="610.7714023169635" dy="25.6">words are happiness,</tspan><tspan x="610.7714023169635" dy="25.6">gladness.</tspan></text></g><g class="node" data-index="4"><circle r="10" cx="629.3548882195244" cy="747.8080573050122" style="fill: rgb(216, 216, 216);"></circle><image width="150" height="100" filter="url(#icon-filter)" x="387.91999786787244" y="581.2300832893965" xlink:href="https://adioma.com/assets/icons/throw-away-trash.png" transform="matrix(-1, 0, 0, 1, 924, 0)" style="opacity: 0.9; fill: rgb(0, 0, 0);"></image><text width="200" height="110" text-anchor="middle" line-height="25.6" font-size="19.200000000000003px" font-family="Roboto" x="462.91999786787244" y="696.2300832893965" style="fill: rgb(0, 0, 0);"><tspan dy="28.799999999999997" font-size="28.799999999999997px" font-family="Roboto" style="font-weight: bold;">Disgust</tspan><tspan x="462.91999786787244" dy="25.6">feeling something is</tspan><tspan x="462.91999786787244" dy="25.6">wrong or nasty</tspan></text></g></g><use width="494" height="125" x="125" y="1244" xlink:href="#watermark" style="fill: rgb(0, 0, 0);"></use></svg>'
+                    }   
+                },
+                "big5":
+                {
+                    "display": {
+                        "high": 0.6,
+                        "low": 0.4   
+                    },
+                    "alert" : {
+                        "high": 0.75,
+                        "low": 0.25   
+                    }   
+                },
+                "social":
+                {
+                    "display": {
+                        "high": 0.6,
+                        "low": 0.4   
+                    },
+                    "alert" : {
+                        "high": 0.75,
+                        "low": 0.25   
+                    }   
+                }
+            },
+            "patterns":
+            [
+
+            ]
+                "note":"These are hypotheses based on the literature. Need to be validated with ML",
+                
+            }
+
+                "social": 
+                {
+                    "tl_confidence": {
+                        "high": "0.5"
+                    }
+                }
+
+
+
+                "big5": {},
+                "social": {},
+                "custom": {}
+            }
                 "anger": -0.3,
                 "disgust": -0.1,
                 "fear": -0.2,
@@ -67,21 +129,6 @@
                     "details": "Your message glows with positive emotions. Please note: recipient may wonder if you are in love with them.",
                     "graph_color":"#00FF00"
                 }
-            ],
-            "alerts": [
-            {
-                "rule_id": "joy_is_joyful",
-                "type": "positive",
-                "test": "(raw_scores.joy.score > 0.5)",
-                "summary": "Joy is Joyful",
-                "details": "The recipient is likely to perceive this message as being happy and positive. Great job :)"
-            },
-            {
-                "rule_id": "contempt",
-                "type": "negative",
-                "test": "(raw_scores.anger.score > 0.5 && raw_score.disgust.score > 0.25)",
-                "summary": "Check Your Attitude!",
-                "details": "Your message contains high levels of anger and disgust. This is likely to be perceived as contempt if directed towards the recipient, or extreme negativity if you are complaining about someone or something else. Suggested revisions: tone it down, laugh it off, see the bright side" 
-            }]
+            ]
         }
 }

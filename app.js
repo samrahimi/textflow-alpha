@@ -5,7 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var user = require('./routes/user');
+var users = require('./routes/users');
 var messages = require('./routes/messages')
 var slack = require('./routes/slack')
 var signup = require('./routes/signup')
@@ -22,11 +22,12 @@ app.use(cookieParser());
 
 app.use('/', express.static(path.join(__dirname, 'public/static_site')));
 app.use('/beta', express.static(path.join(__dirname, 'public/beta')));
-app.use('/mdl', express.static(path.join(__dirname, 'public/mdl')));
+app.use('/mvp', express.static(path.join(__dirname, 'public/beta2')));
+//app.use('/mdl', express.static(path.join(__dirname, 'public/mdl')));
 
 
 //app.use('/', index);
-app.use('/user',user);
+app.use('/users',users);
 app.use('/messages', messages);
 app.use('/slack', slack);
 app.use('/signup', signup);
