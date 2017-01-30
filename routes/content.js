@@ -1,7 +1,8 @@
+//Creation, scoring, and retrieval of text content being evaluated by the app. 
 var express = require('express');
 var router = express.Router();
 var config = require('../lib/config')
-var engine = require('../adaptors/'+config.adaptors.engine)
+var engine = require('../lib/ai/watson')
 var storage = require('../adaptors/mongo_storage')
 //Dynamically load the AI library based on context when it is ready to be called: var jung = require('../lib/jung')
 

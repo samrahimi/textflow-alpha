@@ -58,7 +58,7 @@ module.exports = {
         //Wrapper for mongo find. Calls back with (err, data, count) 
         //data will be an object if there's only one result, otherwise it will be an array 
         connect(null, function(newDb) {
-            db.collection(collection).find(where).toArray(function(err, data) {
+            newDb.collection(collection).find(where).toArray(function(err, data) {
                 if (err || !data) {
                     callback(err, null, 0)
                 } else {
@@ -74,7 +74,7 @@ module.exports = {
                         default:
                             cbd = data
                     }
-                    callback(err, data, data.length)
+                    callback(err, cbd, data.length)
                 }    
             })
         })
