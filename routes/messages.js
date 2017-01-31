@@ -1,50 +1,62 @@
+let DEFAULT_CONTEXT_NAME = "emotional_intelligence"
+let DEFAULT_ALGORITHM = "simple"
+
+//Main entry point for data ingestion, all sources - uses watson, mongo, and melanie's great new algorithm
+//Depends on existence of compatible context in DB (context_name: 'emotional_intelligence')
 var express = require('express');
 var router = express.Router();
 var config = require('../lib/config')
-var engine = require('../adaptors/'+config.adaptors.engine)
 var storage = require('../adaptors/mongo_storage')
-//Dynamically load the AI library based on context when it is ready to be called: var jung = require('../lib/jung')
+var ai_engine = require('../lib/ai/watson')
+var rules_engine = require('../lib/algorithms/simple')
 
-/* Data ingestion and analysis endpont
- * Input parameters should be sent as a JSON object in the POST body (Content-type: application/json)
- * 
- * Input:
- * message: 'a chunk of text or HTML, in any language. max length 128kb'
- * context: {
- *  user_id: unique user identifier in the scope of the client app (could be IMEI, facebook id, or whatever)
- *  client_id: id of the calling application
- *  ruleset_id: id of the ruleset 
- * }
- * 
- * Output:
- * a structured JSON analysis of a message. See README.md */
+var rules_defin = {}
 
 router.post('/', function(req, res, next) {
-  var message_text = req.body.message
-  var context_name = req.body.context_name
-  message.context = context
-  //Save message, so it has an _id
-  storage.write_data('Messages', {message: message, context:context}, function(err, message_object) {
-    console.log("new message id: "+message_object._id)
-    console.log("context id: " +context.id)
-    
-    /* Initialize the low level parsing and emotion analysis engine with credentials */ 
-    engine.init(config.credentials[config.adaptors.engine])
-    /* Request the low level analysis (note: we may want to group messages and / or cache them, because this request costs a penny each time) */
-    engine.evaluate(message_object.message, function(raw_scores){
-      var ai_module = require('../lib/algorithms/jung')
-      ai_module.analyze(message_object, raw_scores, function(results) {
-        results.api_version = config.version //for debugging
-        /* Save on a separate thread, no need for user to wait */
-        storage.write_data("Scores", results, function(err) {
-          if (err) console.log(err.toString())
-        })
-        /* Return results to client */
-        res.send(results)   //everything the UI needs to mess wit yo mind ;)
-      })
-    })
-  })
+  var d = new Date() //Time msg received
 
-});
+  
+  //Part 1: Add metadata to the message so that it can be easily searched later
+  //and so we can figure out which experiment was performed on it.
+  var full_message = 
+    {
+      text: req.body.text,
+      algorithm: req.body.algorithm ||  DEFAULT_ALGORITHM,
+      context_name: req.body.context_name || DEFAULT_CONTEXT_NAME,
+      client_app_id: req.body.client_app_id,
+      user_id: req.body.user_id,
+      thread_id: req.body.thread_id,
+      user_is_sender: true,
+      date: d,
+      absolute_day: parseInt(d.valueOf() / 8640000),
+      time_of_day: parseInt(d.getHours()),
+      day_of_week: parseInt(d.getDay()),
+      day_of_month: parseInt(d.getDate()),
+      month: parseInt(d.getMonth()),
+      year: parseInt(d.getFullYear())
+    }
+    
+
+    //Part 2: load the rules
+    storage.read_data("ContextRules", 
+    {context_name:DEFAULT_CONTEXT_NAME}, 
+      function(err, rulesContext) 
+      {
+      //Part 3: get raw scores from watson for each of the 15 aspects of the psyche
+      ai_engine.init(config.credentials.watson_tone)
+      ai_engine.evaluate(full_message.text, function(raw_scores){ 
+        //Part 4: run it through our own rules engine and instruct UI what to do with 
+        //the results. 
+        full_message.raw_scores = raw_scores
+        full_message.user_results = []
+        //full_message.user_results = rules_engine.evaluateScores(raw_scores, rulesContext)  
+
+        //Part 5: save the whole thing
+        storage.write_data("Results", full_message, function(err, saved_message) {
+          res.send(saved_message)
+        })
+      })
+    });
+  })
 
 module.exports = router;
