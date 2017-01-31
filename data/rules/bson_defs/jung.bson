@@ -24,7 +24,7 @@
         {
             "id":"love",
             "type":"info",
-            "pattern": "(raw_scores.conscientiousness.score < 0.5 && raw_scores.joy.score >= 0.5 && Math.max(raw_scores.openness.score, raw_scores.agreeableness.score, raw_scores.extraversion.score) > 0.85)",
+            "pattern": "(raw_scores.conscientiousness.score < 0.5 && raw_scores.joy.score >= 0.5 && Math.max(raw_scores.openness.score, raw_scores.agreeableness.score, raw_scores.extraversion.score) > 0.85)",
             "advice": "Are you in love? Or just super happy? Either way, great! Please consider the context and the recipient before sending. Have a nice day <3"
         },
         {
@@ -57,14 +57,14 @@
             "graph_color": "#FFFF00"
 
         },
-        {
+        {
             "id": "high_range_mixed",
             "test": "(aggregate_score >= 50 && aggregate_score < 65 && raw_scores.emotional_range.score > 0.5)",
             "summary": "Balanced",
             "details": "Emotionally expressive, yet balanced and realistic.",
             "graph_color": "#FF0000"
         },
-        {
+        {
             "id": "regular_positive",
             "test": "(aggregate_score >=60 && aggregate_score < 80)",
             "summary": "Positive",

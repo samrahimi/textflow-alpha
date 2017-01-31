@@ -1,4 +1,4 @@
-var linq = require('../linq')
+var linq = require('lin')
 
 module.exports = {
     totalConfidence: function(confidence, tentative) {
