@@ -11,6 +11,14 @@ var storage = require('../adaptors/mongo_storage')
 var ai_engine = require('../lib/ai/watson')
 var rules_engine = require('../lib/algorithms/simple')
 
+//Get a message by id
+//Usually will be result.message_id -> message
+router.get('/:message_id', function(req, res, next){
+  storage.read_data("RawMessages", {_id: req.params.message_id},function(err, msg){
+    res.send(msg)
+  })
+})
+
 router.post('/', function(req, res, next) {
   var d = new Date() //Time msg received
 
@@ -49,13 +57,18 @@ router.post('/', function(req, res, next) {
           full_message.user_scores = rules_engine.analyze(full_message, rulesContext)
           //full_message.user_results = rules_engine.evaluateScores(raw_scores, rulesContext)  
 
-          //Part 5: get rid of the msg text, and save the whole thing
-          delete full_message.text //Privacy. 
-          storage.write_data("Results", full_message, function(err, saved_message) {
+          //Part 5: Save it
+          var scored_message = full_message
+              scored_message.message_id = full_message._id
+              delete scored_message._id
+              delete scored_message.text
+
+          //Save the results - they're linked to messages by id
+          storage.write_data("Results", scored_message, function(err, saved_message) {
             res.send(saved_message)
           })
         })
-      });
+      })
     })
   })
 
