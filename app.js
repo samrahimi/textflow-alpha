@@ -20,10 +20,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 
-app.use('/', express.static(path.join(__dirname, 'public/static_site')));
-app.use('/beta', express.static(path.join(__dirname, 'public/beta')));
-app.use('/mvp', express.static(path.join(__dirname, 'public/beta2')));
-//app.use('/mdl', express.static(path.join(__dirname, 'public/mdl')));
+app.use('/svg', express.static(path.join(__dirname, 'public/vectors')));
 
 
 //app.use('/', index);

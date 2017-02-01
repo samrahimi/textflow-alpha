@@ -4,12 +4,15 @@
  * Module dependencies.
  */
 
+require('dotenv').config() //MUST BE FIRST!!!!!
+
 var app = require('../app');
 var debug = require('debug')('tijuana-sunrise:server');
 var http = require('http');
 var https = require('https')
 var config = require('../lib/config.js')
 var fs=require('fs')
+
 
 
 /**
