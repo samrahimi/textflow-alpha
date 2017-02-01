@@ -21,7 +21,7 @@ app.use(cookieParser());
 
 
 app.use('/svg', express.static(path.join(__dirname, 'public/vectors')));
-
+app.use('/', express.static(path.join(__dirname, 'public/textflow.us')));
 
 //app.use('/', index);
 app.use('/users',users);
