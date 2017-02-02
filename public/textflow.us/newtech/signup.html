@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <link rel="stylesheet" href="css/onsenui.css">
+    <link rel="stylesheet" href="css/onsen-css-components-blue-basic-theme.css">
+    <link rel="stylesheet" href="css/login.css">
+    <script
+    src="https://code.jquery.com/jquery-3.1.1.min.js"
+    integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+    crossorigin="anonymous"></script>
+
+    <script src="js/onsenui.js"></script>
+  
+  </head>
+  <body>
+    <ons-page>
+      <ons-toolbar>
+        <div class="center"><img style="padding-top:10px" src="img/logo-header.png" height="30" /></div>
+      </ons-toolbar>
+
+      <div class="login-form">
+        <input id="firstname" type="text" class="text-input--underbar" placeholder="First Name" value="">
+        <input id="lastname" type="text" class="text-input--underbar" placeholder="Last Name" value="">
+        <input id="email" type="email" class="text-input--underbar" placeholder="Email" value="">
+        <input id="password" type="password" class="text-input--underbar" placeholder="Password" value="">
+        <br><br>
+        <ons-button id="signup" modifier="large" class="login-button">Sign Up</ons-button>
+      </div>
+
+    </ons-page>
+    <script>
+        $("document").ready(function() {
+            $("#signup").on("click", function() {
+                var u = $("#email").val()
+                var p = $("#password").val()
+                var f = $("#firstname").val()
+                var l = $("#lastname").val()
+
+                $.get("/users/signup?email="+u+"&password="+p+"&first_name="+f+"&last_name="+l, function(result){
+                    if (result._id) {
+                        localStorage.setItem("textflow_user", JSON.stringify(result))
+                        location.href= "dashboard.html"
+                    } else {
+                        alert("Something went wrong. Please try again")
+                    }
+                })
+            })
+        })
+    </script>
+  </body>
+</html>

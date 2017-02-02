@@ -7,7 +7,7 @@
 6 silly lifecycle tijuana-sunrise@0.0.1~prestart: no script for prestart, continuing
 7 info lifecycle tijuana-sunrise@0.0.1~start: tijuana-sunrise@0.0.1
 8 verbose lifecycle tijuana-sunrise@0.0.1~start: unsafe-perm in lifecycle true
-9 verbose lifecycle tijuana-sunrise@0.0.1~start: PATH: /usr/lib/node_modules/npm/bin/node-gyp-bin:/home/sam/TF_SERVER/tijuana-sunrise/node_modules/.bin:/home/sam/google-cloud-sdk/bin:/home/sam/bin:/home/sam/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+9 verbose lifecycle tijuana-sunrise@0.0.1~start: PATH: /usr/lib/node_modules/npm/bin/node-gyp-bin:/home/sam/TF_SERVER/tijuana-sunrise/node_modules/.bin:/home/sam/google-cloud-sdk/bin:/home/sam/bin:/home/sam/.local/bin:/home/sam/google-cloud-sdk/bin:/home/sam/bin:/home/sam/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin
 10 verbose lifecycle tijuana-sunrise@0.0.1~start: CWD: /home/sam/TF_SERVER/tijuana-sunrise
 11 silly lifecycle tijuana-sunrise@0.0.1~start: Args: [ '-c', 'node ./bin/www' ]
 12 silly lifecycle tijuana-sunrise@0.0.1~start: Returned: code: 1  signal: null

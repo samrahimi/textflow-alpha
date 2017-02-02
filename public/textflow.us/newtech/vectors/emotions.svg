@@ -1,0 +1,89 @@
+          <svg class="visualization" width="100%" height="100%" viewBox="0 0 1800 1800" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve">
+                            <defs id="main-defs">
+     
+         <filter id="icon-filter-black">
+            <feColorMatrix in="SourceGraphic" color-interpolation-filters="sRGB" type="matrix" values="0 0 0 0 0    0 0 0 0 0   0 0 0 0 0   0 0 0 1 0"></feColorMatrix>
+        </filter>
+                                                       </defs>
+        <filter id="icon-filter">
+            <feColorMatrix in="SourceGraphic" color-interpolation-filters="sRGB" type="matrix" values="0 0 0 0 0.7    0 0 0 0 0.7    0 0 0 0 0.7    0 0 0 1 0"></feColorMatrix>
+        </filter>
+
+        <filter id="icon-filter-good">
+            <feColorMatrix in="SourceGraphic" color-interpolation-filters="sRGB" type="matrix" values="0 0 0 0 0    0 0 0 0 0    0 0 0 0 0.7    0 0 0 1 0"></feColorMatrix>
+        </filter>
+
+        <filter id="icon-filter-bad">
+            <feColorMatrix in="SourceGraphic" color-interpolation-filters="sRGB" type="matrix" values="0 0 0 0 0.54    0 0 0 0 0    0 0 0 0 0    0 0 0 1 0"></feColorMatrix>
+        </filter>
+
+
+
+
+<g class="content" width="1300" height="1350">
+    <g class="children-nodes">
+        <g class="node" data-index="1" data-emotion="fear">
+            <image width="100" height="100" filter="url(#icon-filter)" x="850" y="350" xlink:href="https://adioma.com/assets/icons/attack.png"
+                transform="matrix(1, 0, 0, 1, 0, 0)" style="opacity: 0.9; fill: rgb(100,100,100);"></image>
+<text width="200" height="110" text-anchor="middle" line-height="51.2" font-size="38.400000000000006px" font-family="Roboto"
+    x="900" y="465" style="fill: rgb(100,100,100); font-weight: bold;">
+<tspan x="900" dy="38.4">Fear</tspan>
+</text>
+<line fill="none" stroke-width="3" x1="900" y1="637.5" x2="900" y2="912.5" style="stroke: rgb(216, 216, 216);"></line>
+<circle r="10" cx="900" cy="637.5" style="fill: rgb(216, 216, 216);"></circle>
+</g>
+<g class="node" data-index="2" data-emotion="anger">
+    <image width="100" height="100" filter="url(#icon-filter)" x="1444.4103226844709" y="781.8643785156579" xlink:href="https://adioma.com/assets/icons/bang-hand.png"
+        transform="matrix(1, 0, 0, 1, 0, 0)" style="opacity: 0.9; fill: rgb(100,100,100);"></image>
+<text width="200" height="110" text-anchor="middle" line-height="51.2" font-size="38.400000000000006px" font-family="Roboto"
+    x="1494.4103226844709" y="896.8643785156579" style="fill: rgb(100,100,100); font-weight: bold;">
+<tspan x="1494.4103226844709" dy="38.4">Anger</tspan>
+</text>
+<line fill="none" stroke-width="3" x1="1327.975432332819" y1="948.4423525312736" x2="1066.4348903516518" y2="1033.4220259843842"
+    style="stroke: rgb(216, 216, 216);"></line>
+<circle r="10" cx="1327.975432332819" cy="948.4423525312736" style="fill: rgb(216, 216, 216);"></circle>
+</g>
+<g class="node" data-index="3" data-emotion="sadness">
+    <image width="100" height="100" filter="url(#icon-filter)" x="1217.3657826827957" y="1480.6356214843422" xlink:href="https://adioma.com/assets/icons/depression.png"
+        transform="matrix(-1, 0, 0, 1, 2534, 0)" style="opacity: 0.9; fill: rgb(100,100,100);"></image>
+<text width="200" height="110" text-anchor="middle" line-height="51.2" font-size="38.400000000000006px" font-family="Roboto"
+    x="1267.3657826827957" y="1595.6356214843422" style="fill: rgb(100,100,100); font-weight: bold;">
+<tspan x="1267.3657826827957" dy="38.4">Sadness</tspan>
+</text>
+<line fill="none" stroke-width="3" x1="1164.5033635316129" y1="1451.5576474687264" x2="1002.8624191511828" y2="1229.0779740156158"
+    style="stroke: rgb(216, 216, 216);"></line>
+<circle r="10" cx="1164.5033635316129" cy="1451.5576474687264" style="fill: rgb(216, 216, 216);"></circle>
+</g>
+<g class="node good" data-index="4" data-emotion="joy">
+    <image width="100" height="100" filter="url(#icon-filter)" x="482.6342173172043" y="1480.6356214843422" xlink:href="https://adioma.com/assets/icons/online-marketing.png"
+        transform="matrix(-1, 0, 0, 1, 1064, 0)" style="opacity: 0.9; fill: rgb(100,100,100);"></image>
+<text width="200" height="110" text-anchor="middle" line-height="51.2" font-size="38.400000000000006px" font-family="Roboto"
+    x="532.6342173172043" y="1595.6356214843422" style="fill: rgb(100,100,100); font-weight: bold;">
+<tspan x="532.6342173172043" dy="38.4">Joy</tspan>
+</text>
+<line fill="none" stroke-width="3" x1="635.4966364683871" y1="1451.5576474687264" x2="797.1375808488173" y2="1229.0779740156158"
+    style="stroke: rgb(216, 216, 216);"></line>
+<circle r="10" cx="635.4966364683871" cy="1451.5576474687264" style="fill: rgb(216, 216, 216);"></circle>
+</g>
+<g class="node" data-index="5" data-emotion="disgust">
+    <image width="100" height="100" filter="url(#icon-filter)" x="255.589677315529" y="781.864378515658" xlink:href="https://adioma.com/assets/icons/throw-away-trash.png"
+        transform="matrix(-1, 0, 0, 1, 610, 0)" style="opacity: 0.9; fill: rgb(100,100,100);"></image>
+<text width="200" height="110" text-anchor="middle" line-height="51.2" font-size="38.400000000000006px" font-family="Roboto"
+    x="305.589677315529" y="896.864378515658" style="fill: rgb(100,100,100); font-weight: bold;">
+<tspan x="305.589677315529" dy="38.4">Disgust</tspan>
+</text>
+<line fill="none" stroke-width="3" x1="472.02456766718086" y1="948.4423525312737" x2="733.5651096483481" y2="1033.4220259843842"
+    style="stroke: rgb(216, 216, 216);"></line>
+<circle r="10" cx="472.02456766718086" cy="948.4423525312737" style="fill: rgb(216, 216, 216);"></circle>
+</g>
+</g>
+<g class="root-node" data-index="0">
+    <text width="200" height="110" text-anchor="middle" line-height="51.2" font-size="38.400000000000006px" font-family="Roboto"
+        x="900" y="1095" style="fill: rgb(100,100,100); font-weight: bold;">
+<tspan x="900" dy="38.4">You</tspan>
+</text>
+<image width="150" height="100" filter="url(#icon-filter)" style="opacity: 0.9; fill: rgb(100,100,100);" x="825" y="980" xlink:href="https://adioma.com/assets/icons/human.png" transform="matrix(1, 0, 0, 1, 0, 0)"></image>
+</g>
+</g>
+</svg>
+
