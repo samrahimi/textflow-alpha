@@ -4,20 +4,47 @@ var config = require('../lib/config')
 var mongo = require('../adaptors/mongo_storage')
 /* GET users placeholder. */
 router.get('/', function(req, res, next) {
-  res.send({users:[]});
+  if (req.query.auth_token="neversaynever") {
+    mongo.read_data("Users", {}, function(err, results){
+      res.send(req.query.pretty == "true" ? "<pre>"+JSON.stringify(results, null, 2)+"</pre>" : results)
+    })
+  }
+  else
+  {
+    res.send([]);
+  }
 });
 
 router.get('/:user_id/results/', function(req, res, next) {
    //TODO, get user too
    mongo.read_data("Results", {user_id:req.params.user_id}, function(err, results){
      if (!err && results!= null) {
-     var sorted = results.sort((a, b) => b.date - a.date)
-     //TODO: paging, etc
-     res.send(sorted)
-     }
-     else
-     {
-       res.send([])
+      //var sorted = results.sort((a, b) => b.date - a.date)
+      var sorted = results.sort((a, b) =>  a.date - b.date)
+      //TODO: paging, etc
+
+      if (req.query.format == "dataset") {
+          var group = parseInt(req.query.group) //0 for emotions, 1 for personality, 2 for other
+          var filtered = sorted.map((x) => ({date: x.date, results: x.user_scores[group].info}))
+          var dset = []
+          filtered.forEach(function(f){
+              var row = []
+              if (typeof f.date !== Date)
+                row.push((new Date(f.date)).toLocaleDateString())
+              else 
+                row.push(f.date.toLocaleDateString())
+
+              f.results.forEach(function(r){
+                row.push(r.score)
+            })
+            dset.push(row)              
+          })
+          res.contentType("application/json")
+          res.send(dset)
+      } 
+      else {
+        res.send(sorted)
+      }
      }
    })
 });

@@ -1,0 +1,70 @@
+    .emo {
+      width:100%; height:300px; display:none;
+    }
+       /* Default colors - root note and fallback in case of error */
+    g.node text, g.root-node text {
+      font-family: Roboto, Arial, Helvetica, sans-serif  !important;
+    }
+
+    g.node image {
+        filter:url(#icon-filter) !important
+    }
+
+    g.root-node image {
+            filter:url(#icon-filter-black) !important
+    }
+    g.root-node text {
+        fill:rgb(0,0,0) !important
+    }
+
+    /* Negative character traits */
+    g.node.on text, g.node.on image {
+        color:darkred !important;
+        filter:url(#icon-filter-bad) !important;
+    }
+
+
+    /* Positive character traits */
+    g.node.good.on text, g.node.good.on image {
+        color:darkblue !important;
+        filter:url(#icon-filter-good) !important
+    }
+
+    /* Irrelevant, greyed out traits */
+    g.node.off text, g.node.off image {
+        color:#CCCCCC !important;
+        filter:url(#icon-filter-off) !important
+    }
+
+    .logo img {
+      height:80%;padding-top:4px;
+    }
+
+
+
+.login-form {
+  text-align: center;
+  width: 80%;
+  margin: 60px auto 0;
+}
+
+input[type=email], input[type=password], input[type=text]{
+  display: block;
+  width: 100%;
+  margin: 0 auto;
+  outline: none;
+  height: 100%;
+  padding-top: 15px;
+  padding-bottom: 16px;
+}
+
+.login-button {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.forgot-password {
+  display: block;
+  margin: 8px auto 0 auto;
+  font-size: 14px;
+}

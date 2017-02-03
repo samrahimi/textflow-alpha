@@ -1,0 +1,65 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="Content-Security-Policy" content="default-src * data:; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+  <script src="js/onsenui.min.js"></script>
+
+  <link rel="stylesheet" href="css/onsenui.css">
+  <link rel="stylesheet" href="css/onsen-css-components-blue-basic-theme.css">
+  <link rel="stylesheet" href="css/style.css">
+    <script
+    src="https://code.jquery.com/jquery-3.1.1.min.js"
+    integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+    crossorigin="anonymous"></script>
+
+ <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+<script>
+google.charts.load('current', {packages: ['corechart', 'line']});
+google.charts.setOnLoadCallback(download);
+const PRIMARY_EMOTIONS = 0
+const PERSONALITY_TRAITS = 1
+var userId = 'baff44ed-fbad-4ec8-adcc-0489739afde8'
+function download() {
+	getUserEmotions(userId, PRIMARY_EMOTIONS)
+}
+
+var getUserEmotions = function(uid, emotionGroup) {
+	$.get("http://localhost:6969/users/"+uid+"/results?format=dataset&group="+emotionGroup+"&chart=googleeeee", function(emos) 		{
+  	drawChart(emos)
+   })
+}
+
+function drawChart(rows) {
+      var data = new google.visualization.DataTable();
+      data.addColumn('string', 'Date');
+      data.addColumn('number', 'Anger');
+      data.addColumn('number', 'Disgust');
+      data.addColumn('number', 'Fear');
+      data.addColumn('number', 'Joy');
+      data.addColumn('number', 'Sadness');
+			//These are actualyl my emotions. weird.
+      data.addRows(rows);
+
+        var options = {
+          title: 'Your Emotions',
+          curveType: 'function',
+          legend: { position: 'bottom' }
+        }
+      var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+      chart.draw(data, options);
+    }
+</script>
+</head>
+<body>
+    <ons-page>
+      <ons-toolbar>
+        <div class="center"><img style="padding-top:10px" src="img/logo-header.png" height="30" /></div>
+      </ons-toolbar>
+
+    <div id="chart_div" width="100%"></div>
+    </ons-page>
+    <center>
+</body>
+</html>

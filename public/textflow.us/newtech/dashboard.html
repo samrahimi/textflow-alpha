@@ -1,250 +1,39 @@
-<!DOCTYPE HTML>
-<html>
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <meta http-equiv="Content-Security-Policy" content="default-src * data:; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
-  <script src="js/onsenui.min.js"></script>
-
-  <link rel="stylesheet" href="css/onsenui.css">
-  <link rel="stylesheet" href="css/onsen-css-components-blue-basic-theme.css">
-  <link rel="stylesheet" href="css/style.css">
-    <script
-    src="https://code.jquery.com/jquery-3.1.1.min.js"
-    integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-    crossorigin="anonymous"></script>
-
-<style>
-    .emo {
-      width:100%; height:300px; display:none;
-    }
-       /* Default colors - root note and fallback in case of error */
-    g.node text, g.root-node text {
-      font-family: Roboto, Arial, Helvetica, sans-serif  !important;
-    }
-
-    g.node image {
-        filter:url(#icon-filter) !important
-    }
-
-    g.root-node image {
-            filter:url(#icon-filter-black) !important
-    }
-    g.root-node text {
-        fill:rgb(0,0,0) !important
-    }
-
-    /* Negative character traits */
-    g.node.on text, g.node.on image {
-        color:darkred !important;
-        filter:url(#icon-filter-bad) !important;
-    }
-
-
-    /* Positive character traits */
-    g.node.good.on text, g.node.good.on image {
-        color:darkblue !important;
-        filter:url(#icon-filter-good) !important
-    }
-
-    /* Irrelevant, greyed out traits */
-    g.node.off text, g.node.off image {
-        color:#CCCCCC !important;
-        filter:url(#icon-filter-off) !important
-    }
-
-    .logo img {
-      height:80%;padding-top:4px;
-    }
-</style>
-  <script>
-    var preloadSvg = function() {
-      console.log("Loading vectors")
-      $.get("vectors/emotions.svg", function(s) {
-        $("#emotions_graph").html(s)
-      })
-      $.get("vectors/personality.svg", function(s) 
-      {
-        $("#personality_graph").html(s)
-      })
-    }
-
-    ons.ready(function() {
-      console.log("Onsen UI is ready!");
-      console.log("Loading User");
-      var userId = localStorage.getItem("textflow_user")
-      if (userId != null) 
-        window.user = JSON.parse(userId)
-      else {
-        location.href = 'login.html'
-        return;
-      }
-      $.get("/users/"+user._id+"/results", function(results) {
-                    if (results.length > 0) {
-                        console.log("got history for graph")
-                    }
-      })
-    });
-    
-    window.fn = {};
-    window.fn.open = function() {
-      var menu = document.getElementById('menu');
-      menu.open();
-    };
-    window.fn.load = function(page) {
-      var content = document.getElementById('content');
-      var menu = document.getElementById('menu');
-      content
-        .load(page)
-        .then(menu.close.bind(menu));
-    };
-    window.fn.logout = function() {
-      localStorage.setItem("textflow_user", "")
-      location.href="login.html"
-    };
-    window.fn.analyze = function() {
-      var t = $("#message_text").val()
-      var u = window.user._id
-      $.post("/messages", {text: t, user_id: u}, function(results){
-        console.log(results)
-        window.scores = results.user_scores
-        window.raw_scores = results.raw_scores
-        var emo, persona = ''
-        if (window.scores[0].notes.length > 0) 
-          emo = window.scores[0].notes.map(function(n) {return n.display_name}).join(',')
-        else
-          emo = window.scores[0].info[0].display_name //Just the first  one if its not noteworthy
-      
-        if (window.scores[1].notes.length > 0) 
-          persona = window.scores[1].notes.map(function(n) {return n.display_name}).join(',')
-        else
-          persona = window.scores[1].info[0] //Just the first  one if its not noteworthy
-          
-         $("emotions-list").html(emo)
-         $("personality-list").html(persona)
-         $("#results_summary").show()
-      })
-    };
-
-
-
-  </script>
-</head>
-<body>
-  <ons-splitter>
-    <ons-splitter-side id="menu" side="left" width="220px" collapse swipeable>
-      <ons-page>
-        <ons-list>
-          <ons-list-item onclick="fn.logout()" tappable>
-            Log Out
-          </ons-list-item>
-
-          <ons-list-item onclick="fn.load('compose.html')" tappable>
-            Analyze
-          </ons-list-item>
-        </ons-list>
-      </ons-page>
-    </ons-splitter-side>
-    <ons-splitter-content id="content" page="home.html"></ons-splitter-content>
-  </ons-splitter>
-
-  <ons-template id="home.html">
-    <ons-page>
+    <ons-page id="dashboard">
+      <!-- Header -->
       <ons-toolbar>
-        <div class="left">
-          <ons-toolbar-button onclick="fn.open()">
-            <ons-icon icon="ion-navicon, material:md-menu"></ons-icon>
-          </ons-toolbar-button>
+        <div class="left logo">
+          <img src="img/logo-clean.png"  />
         </div>
-        <div class="center logo">
-          <img src="img/logo-header.png"  />
+        <div class="center">
+          Dashboard
         </div>
         <div class="right">
-            <ons-toolbar-button onclick="fn.settings()">
+            <ons-toolbar-button onclick="fn.navigate('settings.html')">
                 <ons-icon icon="ion-settings, material:md-settings"></ons-icon>
             </ons-toolbar-button>
         </div>
       </ons-toolbar>
-      <center><h2>My Emotions</h2></center>
+    
+    <div class="button-bar" style="width:100%;margin-top:5px">
+      <div class="button-bar__item">
+        <input type="radio" name="emo-group" value="0" checked>
+        <button class="button-bar__button">Emotions</button>
+      </div>
+      <div class="button-bar__item">
+        <input type="radio" name="emo-group" value="1">
+        <button class="button-bar__button">Character</button>
+      </div>
+      <div class="button-bar__item">
+        <input type="radio" name="emo-group">
+        <button class="button-bar__button">Behavior</button>
+      </div>
+    </div>
+
+    <!-- Dashboard content -->
       <img width="100%" src="img/dashboard.png" />
 
+    <!-- Compose btn (Android) -->
     <ons-fab position="bottom right" onclick="fn.load('compose.html')" tappable>
       <ons-icon icon="md-plus"></ons-icon>
     </ons-fab>
-
-
     </ons-page>
-  </ons-template>
-
-<ons-template id="compose.html">
-<ons-page id="newTaskPage">
-  <ons-toolbar>
-        <div class="left">
-          <ons-toolbar-button onclick="fn.open()">
-            <ons-icon icon="ion-navicon, material:md-menu"></ons-icon>
-          </ons-toolbar-button>
-        </div>
-        <div class="center logo">
-          <img src="img/logo-header.png"  />
-        </div>
-    <div class="right">
-        <!-- 
-      <ons-if platform="android">
-        <ons-toolbar-button component="button/save-task">
-          <ons-icon icon="md-save"></ons-icon>
-        </ons-toolbar-button>
-      </ons-if>
-      -->
-    </div>
-  </ons-toolbar>
-
-    <textarea id="message_text" class="textarea textarea--transparent" placeholder="Message" style="padding:10px; width: 100%; height: 200px"></textarea>
-    <ons-button modifier="large" onclick="fn.analyze()">Analyze</ons-button>
-
-  <ons-list id="results_summary" style="display:none">
-    <ons-list-header>Your emotional state</ons-list-header>
-    <ons-list-item>This message appears to contain: <b><emotions-list></emotions-list></b> - is this the tone you want to set?</ons-list-item>
-    <ons-list-header>How others see you</ons-list-header>
-    <ons-list-item>Based on this message, others may perceive you as being: <b><personality-list></personality-list></b>
-  </ons-list>
-
-</ons-page>
-</ons-template>
-
-
-
-
-
-  <ons-template id="settings.html">
-  <ons-page>
-    <ons-toolbar>
-      <div class="left">
-        <ons-toolbar-button onclick="fn.open()">
-          <ons-icon icon="ion-navicon, material:md-menu"></ons-icon>
-        </ons-toolbar-button>
-      </div>
-      <div class="center">
-        Settings
-      </div>
-    </ons-toolbar>
-  </ons-page>
-  </ons-template>
-
-  <ons-template id="about.html">
-  <ons-page>
-    <ons-toolbar>
-      <div class="left">
-        <ons-toolbar-button onclick="fn.open()">
-          <ons-icon icon="ion-navicon, material:md-menu"></ons-icon>
-        </ons-toolbar-button>
-      </div>
-      <div class="center">
-        About
-      </div>
-    </ons-toolbar>
-  </ons-page>
-  </ons-template>
-
-
-</body>
-</html>    

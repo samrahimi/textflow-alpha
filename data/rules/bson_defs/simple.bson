@@ -1,0 +1,131 @@
+{  
+   "_id":"0a0ff800-4a67-49f9-a5d8-687d97a8f690",
+   "context_name":"emotional_intelligence",
+   "title":"General Purpose EI Bot",
+   "description":"Flags emotions over a certain threshold, and looks for personality types at either extreme (e.g. introverted or extroverted). Will also run rules like contempt if u want it to",
+   "thresholds":{  
+      "app_default":{  
+         "high":0.6,
+         "low":0.4
+      },
+      "alerts":{  
+         "high":0.7,
+         "low":0.3
+      }
+   },
+   "weights" : {
+        "negative": "(Math.max(raw_scores.anger.score, raw_scores.disgust.score, raw_scores.fear.score, raw_scores.sadness.score))",
+        "positive": "((raw_scores.joy.score / 2) + (Math.max(raw_scores.openness.score, raw_scores.agreeableness.score, raw_scores.extraversion.score) / 2))"
+    },
+   
+   "mappings":{  
+      "anger":{  
+         "group":0,
+         "display_name":null,
+         "category":"primary_emotion",
+         "negative": true
+      },
+      "joy":{  
+         "group":0,
+         "display_name":null,
+         "category":"primary_emotion",
+         "negative":false
+      },
+      "sadness":{  
+         "group":0,
+         "display_name":null,
+         "category":"primary_emotion"
+         "negative":true
+      },
+      "fear":{  
+         "group":0,
+         "display_name":null,
+         "category":"primary_emotion",
+         "negative":true
+      },
+      "disgust":{  
+         "group":0,
+         "display_name":null,
+         "category":"primary_emotion",
+         "negative":true
+      },
+      "extraversion":{  
+         "group":1,
+         "display_name":"outgoing",
+         "opposite":"shy",
+         "category":"personality"
+         "negative": false
+      },
+      "agreeableness":{  
+         "group":1,
+         "display_name":"cooperative",
+         "opposite":"stubborn",
+         "category":"personality",
+         "negative": false
+      },
+      "openness":{  
+         "group":1,
+         "display_name":"open",
+         "opposite":"closed",
+         "category":"personality",
+         "negative": false
+      },
+      "conscientiousness":{  
+         "group":1,
+         "display_name":"detail oriented",
+         "opposite":"careless",
+         "category":"personality",
+         "negative": false
+      },
+      "tentative":{  
+         "group":1,
+         "display_name":"lacking in self-cofidence",
+         "category":"emotional_health",
+         "negative": false
+      },
+      "confident":{  
+         "group":1,
+         "display_name":"confident",
+         "category":"emotional_health",
+         "negative": false
+      },
+      "emotional_range":{  
+         "group":1,
+         "display_name":"sensitive",
+         "opposite":"resilient",
+         "category":"emotional_health",
+         "negative": true
+      },
+      "analytical":{  
+         "group":1,
+         "display_name":"analytical",
+         "category":"practical",
+         "negative": false
+      },
+      "contempt":{  
+         "group":2,
+         "display_name":"contemptuous",
+         "category":"relationships"
+      },
+      "stonewalling":{  
+         "group":2,
+         "display_name":"stonewalling",
+         "opposite":"open-hearted",
+         "category":"relationships"
+      }
+   },
+   "display":[  
+      {  
+         "title":"Your emotions",
+         "svg":"emotions.svg.txt"
+      },
+      {  
+         "title":"How others see you",
+         "svg":"perception.svg.txt"
+      },
+      {  
+         "title":"Relationship issues",
+         "svg":"emotions.svg.txt"
+      }
+   ]
+}

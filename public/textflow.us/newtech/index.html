@@ -1,0 +1,169 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="Content-Security-Policy" content="default-src * data:; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+  <script src="js/onsenui.min.js"></script>
+
+  <link rel="stylesheet" href="css/onsenui.css">
+  <link rel="stylesheet" href="css/onsen-css-components-blue-basic-theme.css">
+  <link rel="stylesheet" href="css/textflow.css">
+    <script
+    src="https://code.jquery.com/jquery-3.1.1.min.js"
+    integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+    crossorigin="anonymous"></script>
+
+
+  <script>
+
+   /*
+    var preloadSvg = function() {
+      console.log("Loading vectors")
+      
+      $.get("vectors/emotions.svg", function(s) {
+        $("#emotions_graph").html(s)
+      })
+      $.get("vectors/personality.svg", function(s) 
+      {
+        $("#personality_graph").html(s)
+      })
+    } */
+
+    
+    /* Global Functions */
+    window.fn = {};
+    window.fn.navigate = function(page, parameters) {
+      $("#kerouac")[0].pushPage(page, {data:parameters})
+    };
+
+    window.fn.isLoggedIn = function() {
+      if (window.user && window.user != null) {
+        return true
+      }
+
+      var userinfo = localStorage.getItem("textflow_user")
+      if (userinfo && userinfo != null) {
+        window.user = JSON.parse(userinfo)
+        return true;
+      } 
+      return false;
+    }
+
+    window.fn.logout= function() {
+      localStorage.removeItem("textflow_user")
+      window.user = null
+      fn.navigate('login.html')
+    };
+
+
+    /* Login page */
+    window.fn.login = {}
+    window.fn.login.initLogin = function() {
+            $("#signup").on("click", function() {
+                fn.navigate("signup.html")
+            })
+            $(".login-button").on("click", function() {
+                var u = $("#email").val()
+                var p = $("#password").val()
+                $.get("/users/login?email="+u+"&password="+p, function(result){
+                    if (result._id) {
+                        localStorage.setItem("textflow_user", JSON.stringify(result))
+                         fn.navigate("dashboard.html")
+                    } else {
+                        alert("Incorrect username or password")
+                    }
+                })
+            })
+    }
+
+    /* Signup page */
+    window.fn.signup = {}
+    window.fn.signup.initSignup = function() {
+                $("#signup-button").on("click", function() {
+                var u = $("#signup #email").val()
+                var p = $("#signup #password").val()
+                var f = $("#signup #firstname").val()
+                var l = $("#signup #lastname").val()
+
+                $.get("/users/signup?email="+u+"&password="+p+"&first_name="+f+"&last_name="+l, function(result){
+                    if (result._id) {
+                        localStorage.setItem("textflow_user", JSON.stringify(result))
+                        fn.navigate("dashboard.html")
+                    } else {
+                        alert("Something went wrong. Please try again")
+                    }
+                })
+            })
+    }
+
+    /* Compose page */
+    window.fn.compose = {}
+
+    window.fn.compose.analyze = function() {
+      var t = $("#message_text").val()
+      var u = window.user._id
+      $.post("/messages", {text: t, user_id: u}, function(results){
+        console.log(results)
+        window.scores = results.user_scores
+        window.raw_scores = results.raw_scores
+        var emo, persona = ''
+        if (window.scores[0].notes.length > 0) 
+          emo = window.scores[0].notes.map(function(n) {return n.display_name}).join(',')
+        else
+          emo = window.scores[0].info[0].display_name //Just the first  one if its not noteworthy
+      
+        if (window.scores[1].notes.length > 0) 
+          persona = window.scores[1].notes.map(function(n) {return n.display_name}).join(',')
+        else
+          persona = window.scores[1].info[0] //Just the first  one if its not noteworthy
+          
+         $("emotions-list").html(emo)
+         $("personality-list").html(persona)
+         $("#results_summary").show()
+      })
+    };
+
+    window.fn.dashboard = {}
+    window.fn.dashboard.initDashboard = function(user) {
+      $.get("/users/"+window.user._id+"/results/?format=dataset&group=0&chart=0", function(results) {
+                    if (results.length > 0) {
+                        console.log("got history for graph, setting it up")
+                    }
+      })
+    }
+
+    ons.ready(function() {
+      console.log("Onsen UI is ready!");
+      console.log("Loading User");
+      
+      document.addEventListener('init', function(event){
+        var page = event.target
+        switch(page.id) {
+           case 'dashboard':
+            if (fn.isLoggedIn()) {
+              fn.dashboard.initDashboard();
+            } else
+              fn.navigate('login.html')
+            break
+           case 'login-page':
+            fn.login.initLogin()
+            break;
+          case 'signup':
+            fn.signup.initSignup()
+            break;
+        }
+      })
+    });
+    
+
+
+
+  </script>
+</head>
+<body>
+  <ons-navigator id="kerouac" page="dashboard.html"></ons-navigator>
+  <!-- Content gets loaded dynamically here -->
+
+</body>
+</html>    

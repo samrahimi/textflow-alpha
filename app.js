@@ -30,4 +30,10 @@ app.use('/slack', slack);
 app.use('/signup', signup);
 app.use('/contexts', contexts);
 
+function errorHandler (err, req, res, next) {
+  res.status(500)
+  res.render('error', { error: err })
+}
+
+app.use(errorHandler)
 module.exports = app;
