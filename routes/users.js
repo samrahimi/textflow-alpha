@@ -23,7 +23,10 @@ router.get('/:user_id/results/', function(req, res, next) {
       var sorted = results.sort((a, b) =>  a.date - b.date)
       //TODO: paging, etc
 
-      if (req.query.format == "dataset") {
+      switch (req.query.format) {
+        case "sparklines":
+          break
+        case "dataset":
           var group = parseInt(req.query.group) //0 for emotions, 1 for personality, 2 for other
           var filtered = sorted.map((x) => ({date: x.date, results: x.user_scores[group].info}))
           var dset = []
@@ -41,9 +44,11 @@ router.get('/:user_id/results/', function(req, res, next) {
           })
           res.contentType("application/json")
           res.send(dset)
-      } 
-      else {
+          break
+
+     default:
         res.send(sorted)
+        break
       }
      }
    })

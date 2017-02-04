@@ -13,7 +13,111 @@
             </ons-toolbar-button>
         </div>
       </ons-toolbar>
-    
+      <div class="profile-card">
+
+        <img src="img/profile_demo.jpg" class="profile-image daily-mood" />
+        <div class="profile-name" data-field="(user.first_name+' '+user.last_name)" >Sam Rahimi</div>
+        <div class="profile-id" style="display:none">@SamSF420</div>
+        <div class="profile-desc">Great work <name data-field="user.first_name">Sam</name>! <br />Your FlowScore is up by 18 points today.</div>
+
+      </div>
+
+      <ons-list id="summary_stats">
+        <ons-list-item>
+          <ons-row>
+            <ons-col class="info-col">
+              <div class="info-num">87</div>
+              <div class="info-unit">Today</div>
+            </ons-col>
+            <ons-col class="info-col">
+              <div class="info-num">69</div>
+              <div class="info-unit">Yesterday</div>
+            </ons-col>
+            <ons-col class="info-col">
+              <div class="info-num">72</div>
+              <div class="info-unit">All time</div>
+            </ons-col>
+          </ons-row>
+        </ons-list-item>
+      </ons-list>
+
+      <!-- Overall / Sent / Received 
+      <ons-list modifier="inset" style="margin-top: 10px">
+        <ons-list-item modifier="chevron">
+          Write a comment
+        </ons-list-item>
+
+        <ons-list-item modifier="chevron">
+          See details
+        </ons-list-item>
+
+        <ons-list-item modifier="chevron">
+          Save to the list
+        </ons-list-item>
+      </ons-list>
+-->
+
+    <ons-list-header>Recent Activity</ons-list-header>
+    <ons-list-item>
+      <div class="left">
+        <img src="img/emojis/joy.svg"  class="list__item__thumbnail" />
+      </div>
+      <div class="center">
+        Joy
+      </div>
+      <div class="right">
+        <span class="trend" data-index="5"></span> 
+      </div>
+    </ons-list-item>
+    <ons-list-item>
+      <div class="left">
+        <img src="img/emojis/sadness.svg"  class="list__item__thumbnail" />
+      </div>
+      <div class="center">
+        Sadness
+      </div>
+      <div class="right">
+        <span class="trend" data-index="5"></span> 
+      </div>
+    </ons-list-item>
+    <ons-list-item>
+      <div class="left">
+        <img src="img/emojis/anger.svg"  class="list__item__thumbnail" />
+      </div>
+      <div class="center">
+        Anger
+      </div>
+      <div class="right">
+        <span class="trend" data-index="1"></span> 
+      </div>
+    </ons-list-item>
+
+    <ons-list-item>
+      <div class="left">
+        <img src="img/emojis/fear.svg"  class="list__item__thumbnail" />
+      </div>
+      <div class="center">
+        Fear
+      </div>
+      <div class="right">
+                <span class="trend" data-index="2"></span> 
+      </div>
+    </ons-list-item>
+
+    <ons-list-item>
+      <div class="left">
+        <img src="img/emojis/joy.svg"  class="list__item__thumbnail" />
+      </div>
+      <div class="center">
+        Disgust
+      </div>
+      <div class="right">
+        <span class="trend" data-index="2"></span> 
+      </div>
+    </ons-list-item>
+    </ons-list>
+
+    <!--
     <div class="button-bar" style="width:100%;margin-top:5px">
       <div class="button-bar__item">
         <input type="radio" name="emo-group" value="0" checked>
@@ -28,9 +132,7 @@
         <button class="button-bar__button">Behavior</button>
       </div>
     </div>
-
-    <!-- Dashboard content -->
-    <div id="emotion_chart" width="100%"></div>
+    -->
 
     <!-- Compose btn (Android) -->
     <ons-fab position="bottom right" onclick="fn.navigate('compose.html')" tappable>

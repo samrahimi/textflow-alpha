@@ -88,7 +88,7 @@
 
             var data = google.visualization.arrayToDataTable([
                 ['Label', 'Value'],
-                ['FloScore®', results.overall_score]
+                ['FlowScore', results.overall_score]
             ]);
 
             var options = {
@@ -128,12 +128,18 @@
     window.fn.dashboard.initDashboard = function(user) {
       $.get("/users/"+window.user._id+"/results/?format=dataset&group=0&chart=0", function(results) {
                     if (results.length > 0) {
-                        window.session.user_history = results
-                        google.charts.load('current', {packages: ['corechart', 'line']});
-                        google.charts.setOnLoadCallback(drawChart);
+                        for (var i = 1; i<=5; i++) {
+                          var data = results.map(x => x[i])
+                          $(".trend[data-index="+i+"]").sparkline(data)
+                        }
                     }
+
+                        window.session.user_history = results
+                        // google.charts.load('current', {packages: ['corechart', 'line']});
+                        // google.charts.setOnLoadCallback(drawChart);
       })
 
+      /*
       function drawChart() {
                 var data = new google.visualization.DataTable();
                 data.addColumn('string', 'Day');
@@ -152,8 +158,8 @@
                 var chart = new google.visualization.LineChart(document.getElementById('emotion_chart'));
                 chart.draw(data, options);
 
-          }
-    }
+          }*/
+    } 
 
     ons.ready(function() {
       console.log("Onsen UI is ready!");
