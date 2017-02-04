@@ -55,6 +55,7 @@ router.post('/', function(req, res, next) {
           //Part 4: Add the raw scores, then get the rules-based tips
           full_message.raw_scores = raw_scores
           full_message.user_scores = rules_engine.analyze(full_message, rulesContext)
+          full_message.overall_score = rules_engine.summarize(full_message, rulesContext)
           //full_message.user_results = rules_engine.evaluateScores(raw_scores, rulesContext)  
 
           //Part 5: Save it

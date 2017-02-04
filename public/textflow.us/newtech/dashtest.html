@@ -27,13 +27,13 @@ function download() {
 
 var getUserEmotions = function(uid, emotionGroup) {
 	$.get("http://localhost:6969/users/"+uid+"/results?format=dataset&group="+emotionGroup+"&chart=googleeeee", function(emos) 		{
-  	drawChart(emos)
+  	  drawChart(emos)
    })
 }
 
 function drawChart(rows) {
       var data = new google.visualization.DataTable();
-      data.addColumn('string', 'Date');
+      data.addColumn('string', 'Day');
       data.addColumn('number', 'Anger');
       data.addColumn('number', 'Disgust');
       data.addColumn('number', 'Fear');
@@ -57,9 +57,7 @@ function drawChart(rows) {
       <ons-toolbar>
         <div class="center"><img style="padding-top:10px" src="img/logo-header.png" height="30" /></div>
       </ons-toolbar>
-
     <div id="chart_div" width="100%"></div>
     </ons-page>
-    <center>
 </body>
 </html>

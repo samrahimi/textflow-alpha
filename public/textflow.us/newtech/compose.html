@@ -1,32 +1,21 @@
 <ons-page id="newTaskPage">
-  <ons-toolbar>
-        <div class="left">
-          <ons-toolbar-button onclick="fn.open()">
-            <ons-icon icon="ion-navicon, material:md-menu"></ons-icon>
-          </ons-toolbar-button>
+      <ons-toolbar>
+        <div class="left logo">
+          <img onclick="fn.navigate('dashboard.html')" src="img/logo-clean.png"  />
         </div>
-        <div class="center logo">
-          <img src="img/logo-header.png"  />
+        <div class="center">
+          FlowLab
         </div>
-    <div class="right">
-        <!-- 
-      <ons-if platform="android">
-        <ons-toolbar-button component="button/save-task">
-          <ons-icon icon="md-save"></ons-icon>
-        </ons-toolbar-button>
-      </ons-if>
-      -->
-    </div>
-  </ons-toolbar>
+        <div class="right">
+            <ons-toolbar-button onclick="fn.navigate('settings.html')">
+                <ons-icon icon="ion-settings, material:md-settings"></ons-icon>
+            </ons-toolbar-button>
+        </div>
+      </ons-toolbar>
 
-    <textarea id="message_text" class="textarea textarea--transparent" placeholder="Message" style="padding:10px; width: 100%; height: 200px"></textarea>
-    <ons-button modifier="large" onclick="fn.analyze()">Analyze</ons-button>
+    <textarea id="message_text" class="textarea textarea--transparent" 
+    placeholder="Type or paste your message, then click Analyze." style="padding:10px; width: 100%; height: 200px"></textarea>
+    <ons-button modifier="large" onclick="fn.compose.analyze()">Analyze</ons-button>
 
-  <ons-list id="results_summary" style="display:none">
-    <ons-list-header>Your emotional state</ons-list-header>
-    <ons-list-item>This message appears to contain: <b><emotions-list></emotions-list></b> - is this the tone you want to set?</ons-list-item>
-    <ons-list-header>How others see you</ons-list-header>
-    <ons-list-item>Based on this message, others may perceive you as being: <b><personality-list></personality-list></b>
-  </ons-list>
-
+    <div id="overall_score_chart" style="width:100%;margin:auto"></div>
 </ons-page>

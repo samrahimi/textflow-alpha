@@ -30,9 +30,9 @@ router.get('/:user_id/results/', function(req, res, next) {
           filtered.forEach(function(f){
               var row = []
               if (typeof f.date !== Date)
-                row.push((new Date(f.date)).toLocaleDateString())
+                row.push(new Date(f.date).getDate().toString())
               else 
-                row.push(f.date.toLocaleDateString())
+                row.push(f.date.getDate().toString())
 
               f.results.forEach(function(r){
                 row.push(r.score)
