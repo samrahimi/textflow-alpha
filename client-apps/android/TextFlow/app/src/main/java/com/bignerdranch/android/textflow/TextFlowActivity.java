@@ -227,7 +227,7 @@ public class TextFlowActivity extends Activity
 
 
     void initSmsDump() {
-        //dumpSms();
+        dumpSms();
 
         // Init observer
         Log.d(MYTAG, "Registering SMS observer");
