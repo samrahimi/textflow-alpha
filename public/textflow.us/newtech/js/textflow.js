@@ -72,6 +72,34 @@
             })
     }
 
+    window.fn.dynamics = 
+    {}
+        window.fn.dynamics.init = function() {
+          
+
+        // google.charts.load('current', {'packages':['gauge']});
+        // google.charts.setOnLoadCallback(drawChart);
+        
+        // function drawChart() {
+
+        //     var data = google.visualization.arrayToDataTable([
+        //         ['Label', 'Value'],
+        //         ['FlowScore', results.overall_score]
+        //     ]);
+
+        //     var options = {
+        //     width: screen.width, height: screen.width,
+        //     redFrom: 0, redTo: 40,
+        //     yellowFrom:40, yellowTo: 60,
+        //     greenFrom:60, greenTo:100,
+        //     minorTicks: 5
+        //     };
+
+        //     var chart = new google.visualization.Gauge(document.getElementById('overall_score_chart'));
+
+        //     chart.draw(data, options);
+
+    }
     /* Compose page */
     window.fn.compose = {}
 

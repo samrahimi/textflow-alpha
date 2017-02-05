@@ -18,9 +18,18 @@
   <script type="text/javascript" src="js/sparkline.js"></script>
   <!-- The application code -->
   <script src="js/textflow.js"></script>
+  <style> 
+  #redalert {
+  background:darkred; color:white; position:fixed; top:0px; left:0px; right:0px; z-index:5999;display:none;height: 40px;
+  }
+  </style>
 </head>
 <body>
   <ons-navigator id="kerouac" page="dashboard.html"></ons-navigator>
   <!-- Content gets loaded dynamically here -->
+  
+  <div id="redalert">
+      <center id="alert_content">Possible pre-menstrual rage detected. Proceed with caution.</center> 
+  </div>
 </body>
 </html>    
