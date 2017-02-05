@@ -1,132 +1,142 @@
     .emo {
-      width:100%; height:300px; display:none;
+        width: 100%;
+        height: 300px;
+        display: none;
     }
-       /* Default colors - root note and fallback in case of error */
-    g.node text, g.root-node text {
-      font-family: Roboto, Arial, Helvetica, sans-serif  !important;
+    /* Default colors - root note and fallback in case of error */
+    
+    svg g.node text,
+    svg g.root-node text {
+        font-family: Roboto, Arial, Helvetica, sans-serif !important;
     }
-
-    g.node image {
-        filter:url(#icon-filter) !important
+    
+    svg g.node image {
+        filter: url(#icon-filter) !important
     }
-
-    g.root-node image {
-            filter:url(#icon-filter-black) !important
+    
+    svg g.root-node image {
+        filter: url(#icon-filter-black) !important
     }
-    g.root-node text {
-        fill:rgb(0,0,0) !important
+    
+    svg g.root-node text {
+        fill: rgb(0, 0, 0) !important
     }
-
     /* Negative character traits */
-    g.node.on text, g.node.on image {
-        color:darkred !important;
-        filter:url(#icon-filter-bad) !important;
+    
+    svg g.node.on text,
+    svg g.node.on image {
+        color: darkred !important;
+        filter: url(#icon-filter-bad) !important;
     }
-
-
     /* Positive character traits */
-    g.node.good.on text, g.node.good.on image {
-        color:darkblue !important;
-        filter:url(#icon-filter-good) !important
+    
+    svg g.node.good.on text,
+    svg g.node.good.on image {
+        color: darkblue !important;
+        filter: url(#icon-filter-good) !important
     }
-
     /* Irrelevant, greyed out traits */
-    g.node.off text, g.node.off image {
-        color:#CCCCCC !important;
-        filter:url(#icon-filter-off) !important
+    
+    svg g.node.off text,
+    svg g.node.off image {
+        color: #CCCCCC !important;
+        filter: url(#icon-filter-off) !important
     }
-
+    
     .logo img {
-      height:80%;padding-top:4px;
+        height: 80%;
+        padding-top: 4px;
     }
-
-
-
-.login-form {
-  text-align: center;
-  width: 80%;
-  margin: 60px auto 0;
-}
-
-input[type=email], input[type=password], input[type=text]{
-  display: block;
-  width: 100%;
-  margin: 0 auto;
-  outline: none;
-  height: 100%;
-  padding-top: 15px;
-  padding-bottom: 16px;
-}
-
-.login-button {
-  width: 100%;
-  margin: 0 auto;
-}
-
-.forgot-password {
-  display: block;
-  margin: 8px auto 0 auto;
-  font-size: 14px;
-}
-
-
-/* Dashboard * profile */
-
-.profile-card {
-  width: 100%;
-  text-align: center;
-  color: white;
-  padding: 30px 0;
-  line-height: 1.4;
-  background-color: #33393c;
-  text-shadow: rgba(0, 0, 0, 0.4) 0px 1px 0px;
-}
-
-.profile-image {
-  height: 100px;
-  width: 100px;
-  border-radius: 50%;
-  -webkit-border-radius: 50%;
-  background-color: black;
-  border: 1px solid white;
-  box-shadow:rgba(0, 0, 0, 0.2) 0px 2px 0px 0px;
-  -webkit-box-shadow:rgba(0, 0, 0, 0.2) 0px 2px 0px 0px;
-}
-
-.profile-name {
-  margin: 20px 0 0 0;
-  font-weight: 600;
-  font-size: 17px;
-}
-
-.profile-id {
-  margin: 0 0 5px 0;
-  font-size: 14px;
-  opacity: 0.6;
-}
-
-.profile-desc {
-  font-size: 15px;
-  opacity: 0.6;
-  width: 90%;
-  text-align: center;
-  margin: 0 auto;
-}
-
-.info-col {
-  height: 60px;
-  line-height: 1;
-  padding: 12px 0 12px 4px;
-}
-
-.info-num {
-  font-size: 16px;
-  font-weight: 500;
-  opacity: 0.8;
-}
-
-.info-unit {
-  margin-top: 6px;
-  font-size: 14px;
-  opacity: 0.4;
-}
+    
+    .login-form {
+        text-align: center;
+        width: 80%;
+        margin: 60px auto 0;
+    }
+    
+    input[type=email],
+    input[type=password],
+    input[type=text] {
+        display: block;
+        width: 100%;
+        margin: 0 auto;
+        outline: none;
+        height: 100%;
+        padding-top: 15px;
+        padding-bottom: 16px;
+    }
+    
+    .login-button {
+        width: 100%;
+        margin: 0 auto;
+    }
+    
+    .forgot-password {
+        display: block;
+        margin: 8px auto 0 auto;
+        font-size: 14px;
+    }
+    /* Dashboard * profile */
+    
+    .profile-card {
+        width: 100%;
+        text-align: center;
+        color: white;
+        padding: 30px 0;
+        line-height: 1.4;
+        background-color: #33393c;
+        text-shadow: rgba(0, 0, 0, 0.4) 0px 1px 0px;
+        background-image: url(/newtech/img/hero-background.png);
+        background-size: 100% auto;
+        background-position: center center;
+    }
+    
+    .profile-image {
+        height: 100px;
+        width: 100px;
+        border-radius: 50%;
+        -webkit-border-radius: 50%;
+        background-color: black;
+        border: 1px solid white;
+        box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 0px 0px;
+        -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 0px 0px;
+    }
+    
+    .profile-name {
+        margin: 20px 0 0 0;
+        font-weight: 600;
+        font-size: 17px;
+    }
+    
+    .profile-id {
+        margin: 0 0 5px 0;
+        font-size: 14px;
+        opacity: 0.6;
+    }
+    
+    .profile-desc {
+        font-size: 15px;
+        opacity: 0.6;
+        width: 90%;
+        text-align: center;
+        margin: 0 auto;
+    }
+    
+    .info-col {
+        height: 60px;
+        line-height: 1;
+        padding: 12px 0 12px 4px;
+        text-align: center !important;
+    }
+    
+    .info-num {
+        font-size: 16px;
+        font-weight: 500;
+        opacity: 0.8;
+    }
+    
+    .info-unit {
+        margin-top: 6px;
+        font-size: 14px;
+        opacity: 0.4;
+    }

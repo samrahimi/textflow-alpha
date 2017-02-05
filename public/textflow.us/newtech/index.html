@@ -1,35 +1,47 @@
 <!DOCTYPE HTML>
 <html>
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <meta http-equiv="Content-Security-Policy" content="default-src * data:; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
-  <script src="js/onsenui.min.js"></script>
 
-  <link rel="stylesheet" href="css/onsenui.css">
-  <link rel="stylesheet" href="css/onsen-css-components-blue-basic-theme.css">
-  <link rel="stylesheet" href="css/textflow.css">
-    <script
-    src="https://code.jquery.com/jquery-3.1.1.min.js"
-    integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-    crossorigin="anonymous"></script>
-  <!-- Doesn't actually load the chart - you do that when needed -->
-  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-  <script type="text/javascript" src="js/sparkline.js"></script>
-  <!-- The application code -->
-  <script src="js/textflow.js"></script>
-  <style> 
-  #redalert {
-  background:darkred; color:white; position:fixed; top:0px; left:0px; right:0px; z-index:5999;display:none;height: 40px;
-  }
-  </style>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Content-Security-Policy" content="default-src * data:; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+    <script src="js/onsenui.min.js"></script>
+
+    <link rel="stylesheet" href="css/onsenui.css">
+    <link rel="stylesheet" href="css/css-components-alt.css">
+    <link rel="stylesheet" href="css/textflow.css">
+    <script src="js/jquery.js"></script>
+    <!-- Doesn't actually load the chart - you do that when needed -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript" src="js/sparkline.js"></script>
+    <!-- The application code -->
+    <script src="js/textflow.js"></script>
+    <style>
+        #redalert {
+            background: darkred;
+            color: white;
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            right: 0px;
+            z-index: 5999;
+            display: none;
+            height: 40px;
+        }
+        
+        info-col {
+            text-align: center !important
+        }
+    </style>
 </head>
+
 <body>
-  <ons-navigator id="kerouac" page="dashboard.html"></ons-navigator>
-  <!-- Content gets loaded dynamically here -->
-  
-  <div id="redalert">
-      <center id="alert_content">Possible pre-menstrual rage detected. Proceed with caution.</center> 
-  </div>
+    <ons-navigator id="kerouac" page="dashboard.html"></ons-navigator>
+    <!-- Content gets loaded dynamically here -->
+
+    <div id="redalert">
+        <center id="alert_content">Possible pre-menstrual rage detected. Proceed with caution.</center>
+    </div>
 </body>
-</html>    
+
+</html>
