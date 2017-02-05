@@ -62,8 +62,12 @@ public class TextFlowActivity extends Activity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // Can't believe I had to do this just to see stack traces... WTF Google!? :P
         setDefaultUncaughtExceptionHandler();
 
+        // --------------------------------------------------------------------------------
+        // BEGIN GENERATED CODE
+        // FIXME see if we need the mSystemUiHider BS
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_text_flow);
@@ -123,6 +127,9 @@ public class TextFlowActivity extends Activity
                 }
             }
         });
+        // END GENERATED CODE
+        // --------------------------------------------------------------------------------
+
 
         // --------------------------------------------------------------------------------
         // START REAL SHIT
