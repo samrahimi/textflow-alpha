@@ -1,1 +1,0 @@
-Android project root folder. 
