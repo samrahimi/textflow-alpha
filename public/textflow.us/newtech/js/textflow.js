@@ -1,7 +1,7 @@
    /* Core scripts for textflow app. This is a single page app
-         with an AngularJS-llike architecture. Functions have been namespaced 
-         window.fn is the global namespace, then window.fn.dashboard for 
-         page-specific code, etc. */
+                     with an AngularJS-llike architecture. Functions have been namespaced 
+                     window.fn is the global namespace, then window.fn.dashboard for 
+                     page-specific code, etc. */
 
    window.session = {};
 
@@ -107,20 +107,22 @@
        var u = window.user._id
        $.post("/messages", { text: t, user_id: u }, function(results) {
            window.session.latest = results
-
+           $("#analysis").show()
            google.charts.load('current', { 'packages': ['gauge'] });
            google.charts.setOnLoadCallback(drawChart);
 
            function drawChart() {
-
+               var message = (results.overall_score < 40 ? "Negative" : (
+                   results.overall_score > 60 ? "Positive" : "Neutral"
+               ))
                var data = google.visualization.arrayToDataTable([
                    ['Label', 'Value'],
-                   ['FlowScore', results.overall_score]
+                   [message, results.overall_score]
                ]);
 
                var options = {
-                   width: screen.width,
-                   height: screen.width,
+                   width: screen.width - 80,
+                   height: screen.width - 80,
                    redFrom: 0,
                    redTo: 40,
                    yellowFrom: 40,
