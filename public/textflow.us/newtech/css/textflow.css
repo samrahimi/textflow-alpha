@@ -154,9 +154,8 @@
     }
     
     .barrr {
-        width: 90%;
-        margin: auto;
-        min-height: 300px;
+        width: 95%;
+        margin: 0 auto;
         margin-top: 10px;
         overflow: visible;
         display: block;

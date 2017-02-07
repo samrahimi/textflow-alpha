@@ -1,7 +1,7 @@
    /* Core scripts for textflow app. This is a single page app
-                                                                                                                                             with an AngularJS-llike architecture. Functions have been namespaced 
-                                                                                                                                             window.fn is the global namespace, then window.fn.dashboard for 
-                                                                                                                                             page-specific code, etc. */
+                                                                                                                                                                                             with an AngularJS-llike architecture. Functions have been namespaced 
+                                                                                                                                                                                             window.fn is the global namespace, then window.fn.dashboard for 
+                                                                                                                                                                                             page-specific code, etc. */
 
    window.session = {};
 
@@ -131,7 +131,7 @@
 
    window.fn.results_page = {}
    window.fn.results_page.drawOverallChart = function(results) {
-       google.charts.load('current', { 'packages': ['gauge', 'bar'] });
+       google.charts.load('current', { 'packages': ['gauge', 'corechart', 'bar'] });
        google.charts.setOnLoadCallback(drawChart);
 
        function drawChart() {
@@ -175,16 +175,14 @@
 
        var data = google.visualization.arrayToDataTable(array)
        var options = {
-           chart: {
-               title: groupId == 0 ? 'Mood' : 'Persona',
-               subtitle: results[groupId].title
-           },
-           bars: 'horizontal' // Required for Material Bar Charts.
+           legend: { position: 'none' },
+           title: results[groupId].title,
+           chartArea: { left: 20, width: '90%' }
        };
 
-       var chart = new google.charts.Bar(document.getElementById('detailed-' + groupId));
+       var chart = new google.visualization.ColumnChart(document.getElementById('detailed-' + groupId));
 
-       chart.draw(data, google.charts.Bar.convertOptions(options));
+       chart.draw(data, options);
 
    }
 
@@ -196,15 +194,20 @@
        $("#intellectScore").html(parseInt(results.advice.intellect.score))
 
        if (results.advice.warnings.length > 0) {
-           $("#warnings").show()
+           var html = "<p>Please be aware of the following:</p><ul>"
            var w = results.advice.warnings
            w.forEach(function(warning) {
-               $("#warnings").append('<li class="list__item list__item--longdivider">' + warning + '</li>')
-           })
+               html += '<li style="padding:10px 0">' + warning + '</li>'
 
-           $("#warnings").on("click", function() {
-               $(this).hide()
            })
+           html += "</ul>"
+           var opts = {
+               messageHTML: html,
+               title: 'Alerts',
+               buttonLabels: 'Got it'
+           }
+
+           ons.notification.alert(opts);
        }
 
        $(".overall-summary").html(results.advice.emotions.summary + " " + results.advice.persona.summary)
