@@ -17,7 +17,9 @@
         "negative": "(Math.max(raw_scores.anger.score, raw_scores.disgust.score, raw_scores.fear.score, raw_scores.sadness.score))",
         "positive": "((raw_scores.joy.score / 2) + (Math.max(raw_scores.openness.score, raw_scores.agreeableness.score, raw_scores.extraversion.score) / 2))"
     },
-   
+   "advice": {
+       //TODO
+   }
    "mappings":{  
       "anger":{  
          "group":0,

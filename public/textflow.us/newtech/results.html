@@ -1,0 +1,51 @@
+<ons-page id="results-page">
+    <!-- Header -->
+    <ons-toolbar>
+        <div class="left">
+            <ons-back-button>Back</ons-back-button>
+        </div>
+        <div class="center">
+            Message Analytics
+        </div>
+        <div class="right">
+            <ons-toolbar-button onclick="fn.navigate('settings.html')">
+                <ons-icon icon="md-settings"></ons-icon>
+            </ons-toolbar-button>
+        </div>
+    </ons-toolbar>
+    <div class="profile-card">
+        <div id="overall_score_chart" style="width:150px;height:150px;overflow:hidden;margin:auto">
+        </div>
+        <div class="overall-summary"></div>
+    </div>
+
+    <ons-list id="summary_stats">
+        <ons-list-item>
+            <ons-row>
+                <ons-col class="info-col">
+                    <div class="info-num" id="moodScore">--</div>
+                    <div class="info-unit">Mood</div>
+                </ons-col>
+                <ons-col class="info-col">
+                    <div class="info-num" id="personaScore">--</div>
+                    <div class="info-unit">Persona</div>
+                </ons-col>
+                <ons-col class="info-col">
+                    <div class="info-num" id="intellectScore">--</div>
+                    <div class="info-unit">Intellect</div>
+                </ons-col>
+            </ons-row>
+        </ons-list-item>
+    </ons-list>
+
+
+    <ons-list id="warnings" modifier="inset">
+        <ons-list-header>Alerts (tap to dismiss)</ons-list-header>
+    </ons-list>
+
+    <!-- Detail bar charts. If anyone cares -->
+    <div class="graph-card">
+        <div class="barrr" id="detailed-0"></div>
+        <div class="barrr" id="detailed-1"></div>
+    </div>
+</ons-page>

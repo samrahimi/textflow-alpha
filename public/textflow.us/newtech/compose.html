@@ -4,23 +4,47 @@
             <img onclick="fn.navigate('dashboard.html')" src="img/logo-clean.png" />
         </div>
         <div class="center">
-            FlowLab
+            Message Analytics
         </div>
         <div class="right">
             <ons-toolbar-button onclick="fn.navigate('settings.html')">
-                <ons-icon icon="ion-settings, material:md-settings"></ons-icon>
+                <ons-icon icon="md-settings"></ons-icon>
             </ons-toolbar-button>
         </div>
     </ons-toolbar>
-
-    <textarea id="message_text" class="textarea textarea--transparent" placeholder="Type or paste your message, then tap Analyze. Your results will appear below." style="padding:10px; width: 100%; height: 200px"></textarea>
-    <ons-button modifier="large" onclick="fn.compose.analyze()">Analyze</ons-button>
-    <div id="analysis" style="display:none">
-        <div id="emotion_results"></div>
-        <div id="personality_results"></div>
-        <center>
-            <div id="overall_score_chart" style="margin:auto">
+    <ons-list>
+        <ons-list-item modifier="nodivider">
+            <div class="left">
+                <ons-icon icon="fa-pencil" class="list__item__icon"></ons-icon>
             </div>
-        </center>
-    </div>
+            Step 1. Create your message</ons-list-item>
+        <ons-list-item modifier="nodivider">
+            <div class="center">
+                <textarea id="message_text" class="textarea textarea--transparent" placeholder="Type or paste your message, then tap Analyze. Your results will appear a few seconds later so be patient :)" style="padding:10px; width: 100%; height: 200px"></textarea>
+                <ons-button modifier="large" onclick="fn.compose.analyze()">Analyze</ons-button>
+            </div>
+        </ons-list-item>
+
+        <ons-list-header></ons-list-header>
+        <ons-list-item modifier="nodivider">
+            <div class="left">
+                <ons-icon class="list__item__icon" icon="fa-sliders"></ons-icon>
+            </div>
+            Step 2. Your message is scored across 12 dimensions of emotional, cognitive, and behavioral traits.
+        </ons-list-item>
+
+        <ons-list-item modifier="nodivider">
+            <div class="left">
+                <ons-icon class="list__item__icon" icon="fa-gears"></ons-icon>
+            </div>
+            Step 3. Edit your message and watch your score improve.
+        </ons-list-item>
+
+        <ons-list-item modifier="nodivider">
+            <div class="left">
+                <ons-icon class="list__item__icon" icon="fa-heart"></ons-icon>
+            </div>
+            Step 4. Send the perfect message, every time :)
+        </ons-list-item>
+    </ons-list>
 </ons-page>

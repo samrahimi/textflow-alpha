@@ -54,6 +54,12 @@
         margin: 60px auto 0;
     }
     
+    .lab {
+        text-align: center;
+        width: 90%;
+        margin: 30px auto 0;
+    }
+    
     input[type=email],
     input[type=password],
     input[type=text] {
@@ -102,7 +108,8 @@
         -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 0px 0px;
     }
     
-    .profile-name {
+    .profile-name,
+    .overall-summary {
         margin: 20px 0 0 0;
         font-weight: 600;
         font-size: 17px;
@@ -139,4 +146,18 @@
         margin-top: 6px;
         font-size: 14px;
         opacity: 0.4;
+    }
+    
+    .graph-card {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .barrr {
+        width: 90%;
+        margin: auto;
+        min-height: 300px;
+        margin-top: 10px;
+        overflow: visible;
+        display: block;
     }

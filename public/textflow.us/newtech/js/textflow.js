@@ -1,7 +1,7 @@
    /* Core scripts for textflow app. This is a single page app
-                     with an AngularJS-llike architecture. Functions have been namespaced 
-                     window.fn is the global namespace, then window.fn.dashboard for 
-                     page-specific code, etc. */
+                                                                                                                                             with an AngularJS-llike architecture. Functions have been namespaced 
+                                                                                                                                             window.fn is the global namespace, then window.fn.dashboard for 
+                                                                                                                                             page-specific code, etc. */
 
    window.session = {};
 
@@ -107,35 +107,7 @@
        var u = window.user._id
        $.post("/messages", { text: t, user_id: u }, function(results) {
            window.session.latest = results
-           $("#analysis").show()
-           google.charts.load('current', { 'packages': ['gauge'] });
-           google.charts.setOnLoadCallback(drawChart);
-
-           function drawChart() {
-               var message = (results.overall_score < 40 ? "Negative" : (
-                   results.overall_score > 60 ? "Positive" : "Neutral"
-               ))
-               var data = google.visualization.arrayToDataTable([
-                   ['Label', 'Value'],
-                   [message, results.overall_score]
-               ]);
-
-               var options = {
-                   width: screen.width - 80,
-                   height: screen.width - 80,
-                   redFrom: 0,
-                   redTo: 40,
-                   yellowFrom: 40,
-                   yellowTo: 60,
-                   greenFrom: 60,
-                   greenTo: 100,
-                   minorTicks: 5
-               };
-
-               var chart = new google.visualization.Gauge(document.getElementById('overall_score_chart'));
-
-               chart.draw(data, options);
-           }
+           fn.navigate('results.html')
 
            /*
         window.scores = results.user_scores
@@ -157,6 +129,91 @@
        })
    };
 
+   window.fn.results_page = {}
+   window.fn.results_page.drawOverallChart = function(results) {
+       google.charts.load('current', { 'packages': ['gauge', 'bar'] });
+       google.charts.setOnLoadCallback(drawChart);
+
+       function drawChart() {
+           var message = (results.overall_score < 40 ? "Negative" : (
+               results.overall_score > 60 ? "Positive" : "Neutral"
+           ))
+           var data = google.visualization.arrayToDataTable([
+               ['Label', 'Value'],
+               [message, results.overall_score]
+           ]);
+
+           var options = {
+               width: 150,
+               height: 150,
+               redFrom: 0,
+               redTo: 40,
+               yellowFrom: 40,
+               yellowTo: 60,
+               greenFrom: 60,
+               greenTo: 100,
+               minorTicks: 5
+           };
+
+           var chart = new google.visualization.Gauge(document.getElementById('overall_score_chart'));
+
+           chart.draw(data, options);
+
+           window.fn.results_page.drawDetailCharts(results.user_scores, 0)
+           window.fn.results_page.drawDetailCharts(results.user_scores, 1)
+       }
+   }
+
+   window.fn.results_page.drawDetailCharts = function(results, groupId) {
+       var array = [
+           ['Trait', 'Score']
+       ]
+
+       results[groupId].info
+           .filter(y => y.score != 0)
+           .forEach(function(x) { array.push([x.display_name, parseInt(x.score * 100)]) })
+
+       var data = google.visualization.arrayToDataTable(array)
+       var options = {
+           chart: {
+               title: groupId == 0 ? 'Mood' : 'Persona',
+               subtitle: results[groupId].title
+           },
+           bars: 'horizontal' // Required for Material Bar Charts.
+       };
+
+       var chart = new google.charts.Bar(document.getElementById('detailed-' + groupId));
+
+       chart.draw(data, google.charts.Bar.convertOptions(options));
+
+   }
+
+   window.fn.results_page.initResults = function() {
+       var results = window.session.latest
+
+       $("#moodScore").html(parseInt(results.advice.emotions.score))
+       $("#personaScore").html(parseInt(results.advice.persona.score))
+       $("#intellectScore").html(parseInt(results.advice.intellect.score))
+
+       if (results.advice.warnings.length > 0) {
+           $("#warnings").show()
+           var w = results.advice.warnings
+           w.forEach(function(warning) {
+               $("#warnings").append('<li class="list__item list__item--longdivider">' + warning + '</li>')
+           })
+
+           $("#warnings").on("click", function() {
+               $(this).hide()
+           })
+       }
+
+       $(".overall-summary").html(results.advice.emotions.summary + " " + results.advice.persona.summary)
+       window.fn.results_page.drawOverallChart(results)
+           //window.fn.results_page.drawDetailCharts(results.user_scores, 0)
+           //window.fn.results_page.drawDetailCharts(results.user_scores, 1)
+
+   }
+
    window.fn.dashboard = {}
    window.fn.dashboard.initDashboard = function(user) {
        $(".profile-name").html(window.user.first_name)
@@ -164,7 +221,7 @@
            if (results.length > 0) {
                for (var i = 1; i <= 5; i++) {
                    var data = results.map(x => x[i])
-                   $(".trend[data-index=" + i + "]").sparkline(data)
+                   $(".trend[data-index=" + i + "]").css("width", "150px").sparkline(data.map(y => y * 100))
                }
            }
 
@@ -213,6 +270,9 @@
                    break;
                case 'signup':
                    fn.signup.initSignup()
+                   break;
+               case 'results-page':
+                   fn.results_page.initResults()
                    break;
            }
        })
