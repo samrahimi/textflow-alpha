@@ -1,7 +1,7 @@
    /* Core scripts for textflow app. This is a single page app
-                                                                                                                                                                                             with an AngularJS-llike architecture. Functions have been namespaced 
-                                                                                                                                                                                             window.fn is the global namespace, then window.fn.dashboard for 
-                                                                                                                                                                                             page-specific code, etc. */
+                                                                                                                                                                                                with an AngularJS-llike architecture. Functions have been namespaced 
+                                                                                                                                                                                                window.fn is the global namespace, then window.fn.dashboard for 
+                                                                                                                                                                                                page-specific code, etc. */
 
    window.session = {};
 
@@ -105,8 +105,11 @@
    window.fn.compose.analyze = function() {
        var t = $("#message_text").val()
        var u = window.user._id
+       var postData = { text: t, user_id: u }
+       console.log("Sending " + JSON.stringify(postData, null, 3))
        $.post("/messages", { text: t, user_id: u }, function(results) {
            window.session.latest = results
+           console.log
            fn.navigate('results.html')
 
            /*

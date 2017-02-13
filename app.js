@@ -10,6 +10,7 @@ var messages = require('./routes/messages')
 var slack = require('./routes/slack')
 var signup = require('./routes/signup')
 var contexts = require('./routes/contexts')
+var utils = require('./routes/utilities')
 var app = express();
 
 // uncomment after placing your favicon in /public
@@ -19,21 +20,15 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-
 app.use('/svg', express.static(path.join(__dirname, 'public/vectors')));
 app.use('/', express.static(path.join(__dirname, 'public/textflow.us')));
 
 //app.use('/', index);
-app.use('/users',users);
+app.use('/users', users);
 app.use('/messages', messages);
 app.use('/slack', slack);
 app.use('/signup', signup);
 app.use('/contexts', contexts);
+app.use('/utils', utils)
 
-function errorHandler (err, req, res, next) {
-  res.status(500)
-  res.render('error', { error: err })
-}
-
-app.use(errorHandler)
 module.exports = app;
