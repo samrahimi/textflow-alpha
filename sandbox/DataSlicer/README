@@ -1,0 +1,12 @@
+Running is very simple.
+Just need to add the 'src' folder to PYTHONPATH and 'export' it so it's visible to subprocesses.
+In bash/zsh, this looks like:
+
+  $ cd DataSlicer
+  $ export PYTHONPATH=$PWD/src
+
+Then you can get usage info as:
+  $ bin/tf-dataslice.py -h
+
+Sample invocation (NOTE I'm not checking the sample data file in, you have to copy that manually):
+  $ bin/tf-dataslice.py -f data/testdata.json -o data/testdata-timeslice.json
