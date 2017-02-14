@@ -7,7 +7,7 @@ var path = require('path')
 router.post('/', function(req, res, next) {
     var jString = JSON.stringify(req.body, null, 3)
     var filename = uuid().toString() + '.json'
-    var filepath = 'public/textflow.us/datasets/' + filename
+    var filepath = 'public/textflow.us/exports/' + filename
     require('fs').writeFileSync(filepath, jString)
 
     res.send({ url: 'https://textflow.us/datasets/' + filename })
