@@ -15,18 +15,21 @@ installing on a modern Debian-compatible flavor of Linux
 # Installing Dependencies
 - Clone the repository: git clone https://github.com/samrahimi/textflow-alpha.git && cd textflow-alpha
 - Install NPM dependencies: 
-  ```
-  sudo npm install
-  ```
+
+```
+sudo npm install
+```
+
 - Install MongoDB 3.4 or higher or sign up for a hosted instance. Create an empty database (the example below assumes the DB name is textflow)
 - Create an instance of Watson Tone Analyzer service on Bluemix and save the credentials. 
 - Create a .env file and set the port, MongoDB connection string and Watson credentials to match your setup. If you want to use SSL, set PORT=80 and app will run on http:80 and https:443
-  ```
-  PORT=80 
-  DB=mongodb://localhost:27017/textflow
-  WATSON_PASSWORD='Password for your tone analyzer service'
-  WATSON_USER = 'Username for your tone analyzer service'
-  ```
+
+```
+PORT=80 
+DB=mongodb://localhost:27017/textflow
+WATSON_PASSWORD='Password for your tone analyzer service'
+WATSON_USER = 'Username for your tone analyzer service'
+```
 
 # Generate your SSL Certificates (production only)
 
@@ -40,6 +43,7 @@ sudo certbot certonly
 The CertBot UI will ask you some questions: enter your domain name where you're hosting and accept default settings for everything else
 
 # Start The App (Testing / Development)
+
 ```
 sudo npm start
 ```
