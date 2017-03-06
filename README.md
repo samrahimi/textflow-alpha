@@ -13,7 +13,7 @@ The following assumes that the domain is textflow.us and that you're
 installing on a modern Debian-compatible flavor of Linux
 
 # Installing Dependencies
-- Clone the repository: git clone https://github.com/samrahimi/tijuana-sunrise.git && cd tijuana-sunrive
+- Clone the repository: git clone https://github.com/samrahimi/textflow-alpha.git && cd textflow-alpha
 - Install NPM dependencies: 
   ```
   sudo npm install
