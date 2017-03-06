@@ -14,33 +14,35 @@ installing on a modern Debian-compatible flavor of Linux
 
 # Installing Dependencies
 - Clone the repository: git clone https://github.com/samrahimi/tijuana-sunrise.git && cd tijuana-sunrive
-- Install NPM dependencies: sudo npm install
+- Install NPM dependencies: 
+  ```
+  sudo npm install
+  ```
 - Install MongoDB 3.4 or higher or sign up for a hosted instance. Create an empty database (the example below assumes the DB name is textflow)
 - Create an instance of Watson Tone Analyzer service on Bluemix and save the credentials. 
 - Create a .env file and set the port, MongoDB connection string and Watson credentials to match your setup:
-  '''
+  ```
   PORT=6969 #Set to 80 in production and app will run on http:80 and https:443
   DB=mongodb://localhost:27017/textflow
   WATSON_PASSWORD='Password for your tone analyzer service'
   WATSON_USER = 'Username for your tone analyzer service'
-  '''
+  ```
 
 # Generate your SSL Certificates (production only)
 
 NOTE: this app is configured to use CERTBOT on Debian 8 and assumes certificate location and type based on that. If you wish to use a different SSL provider or server OS, edit /bin/www to load the appropriate certificate 
 
-'''
+```
 sudo apt-get install certbot -t jessie-backports
 sudo certbot certonly
-'''
+```
 
 The CertBot UI will ask you some questions: enter your domain name where you're hosting and accept default settings for everything else
 
 # Start The App (Testing / Development)
-'''
+```
 sudo npm start
-'''
-
+```
 
 # Running As A Service (Production)
 
