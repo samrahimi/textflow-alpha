@@ -20,9 +20,9 @@ installing on a modern Debian-compatible flavor of Linux
   ```
 - Install MongoDB 3.4 or higher or sign up for a hosted instance. Create an empty database (the example below assumes the DB name is textflow)
 - Create an instance of Watson Tone Analyzer service on Bluemix and save the credentials. 
-- Create a .env file and set the port, MongoDB connection string and Watson credentials to match your setup:
+- Create a .env file and set the port, MongoDB connection string and Watson credentials to match your setup. If you want to use SSL, set PORT=80 and app will run on http:80 and https:443
   ```
-  PORT=6969 #Set to 80 in production and app will run on http:80 and https:443
+  PORT=80 
   DB=mongodb://localhost:27017/textflow
   WATSON_PASSWORD='Password for your tone analyzer service'
   WATSON_USER = 'Username for your tone analyzer service'
